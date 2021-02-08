@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator/check');
 
 //Bringing in user model
@@ -53,15 +55,31 @@ router.post('/', [
             university
         })
 
-        // encrypt pword 
+        // encrypt pword - calculates a hash from a password using a random 'salt'
         const salt = await bcrypt.genSalt(10);
 
         user.password = await bcrypt.hash(password, salt)
 
         await user.save();
 
-        //return the jsonwebtoken
-        res.send('User registered');
+        //return the jsonwebtoken - sending this back once the user is registered, so they can use this token to access protected routes.
+
+        const payload = {
+            user: {
+                id: user.id
+            }
+        }
+
+        //todo: change this to 36000 seconds - this is an hour -> for production!
+        jwt.sign(
+            payload,
+            config.get('jwtSecret'),
+            {expiresIn : 360000},
+            (err, token) => {
+                if(err) throw err;
+                res.json({ token });
+            }
+        );
 
     } catch(err) {
         console.error(err.message);

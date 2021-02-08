@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://jamie123:jamie123@cluster0.zkofa.mongodb.net/unicookbook?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://jamie123:jamie123@cluster0.zkofa.mongodb.net/unicookbook?retryWrites=true&w=majority",
+    "jwtSecret": "secrettoken"
 }
