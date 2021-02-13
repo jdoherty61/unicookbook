@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+//Creating a schema for user based of initial designs and fields that are required for a registered user. 
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,

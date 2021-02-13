@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//Adding profile attributes, such as description/bio - unrequired information when signing up.
+//Adding shoppinglist attributes. Shopping list is made up of the user who it belongs to with the array list of recipes and their ingredients and price.
 
 const ShoppingListSchema = new mongoose.Schema({
     user:{

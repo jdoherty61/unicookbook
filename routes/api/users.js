@@ -70,11 +70,11 @@ router.post('/', [
             }
         }
 
-        //todo: change this to 36000 seconds - this is an hour -> for production!
+        //todo: should i have an expire? if they are on their mobile which is likely to be password protected. keep them logged in
         jwt.sign(
             payload,
             config.get('jwtSecret'),
-            {expiresIn : 360000},
+            // {expiresIn : 360000},
             (err, token) => {
                 if(err) throw err;
                 res.json({ token });

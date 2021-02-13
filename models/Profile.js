@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 //Adding profile attributes, such as description/bio - unrequired information when signing up.
+//Todo: Is this overkill? I could just have a user object with a profile array. 
 
 const ProfileSchema = new mongoose.Schema({
     user:{
@@ -11,59 +12,10 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    // shoppingList:  [
-    //     {
-    //         recipes: {
-    //             type: Array,
-    //             default: []
-    //         }
-    //     }
-    // ],
-    // shoppingList: { type: Array, default: []}, //the other way around? [ type: object, default:{}] ?
-    // userPreferences: [
-    //     {
-    //         maxPrice: {
-    //             type: Number,
-    //             default: 5
-    //         },
-    //         difficulty: {
-    //             type: String,
-    //             default: 'EASY'
-    //         },
-    //         maxTime: {
-    //             type: Number,
-    //             default: 15 
-    //         },
-    //         excludeIngredients: { type: Array, default: []},
-    //         exclusivelyUni: {
-    //             type: Boolean,
-    //             default: false
-    //         }
-    //     }
-    // ],
-    // budget: [{
-    //     studentFinance: {
-    //         type: Number,
-    //         default: null
-    //     },
-    //     income: { type: Array, default: []},
-    //     spending: { type: Array, default: []},
-    //     duration: {
-    //         number: {
-    //             type: Number,
-    //             default: null    
-    //         },
-    //         timescale: {
-    //             type: String,
-    //             default: null
-    //         }
-    //     }
-    // }],
-    date: {
+        date: {
         type: Date,
         default: Date.now
     } 
 });
-
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
