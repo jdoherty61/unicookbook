@@ -18,7 +18,7 @@ const getUserBudgetUrl = "/me";
 router.post(postUserBudgetUrl, auth, async (req, res) => {
   const { studentFinanceIncome, income, spending, duration } = req.body;
 
-  //Build profile object
+  //Build user budget object
   const userBudgetFields = {};
 
   userBudgetFields.user = req.user.id;
