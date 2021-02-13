@@ -98,7 +98,11 @@ router.post('/', [
         await profile.save();
 
         //add budget
+        userBudget = new UserBudget({
+            user: payload.user.id
+        });
 
+        await userBudget.save();
 
 
         //################################## this might cause errors ##############################

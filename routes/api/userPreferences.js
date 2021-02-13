@@ -10,18 +10,17 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const UserPreferences = require("../../models/UserPreferences");
 
+//const URLS
+const postUserPreferences = "/";
+const getUserPreferences = "/me"
 
 // @route    POST api/userPreferences
 // @desc     post user preferences of the user
 // @access   Private
 router.post(
-    '/',
+    postUserPreferences,
     auth,
     async (req, res) => {
-    //   const errors = validationResult(req);
-    //   if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    //   }
   
       const {
         maxPrice,
@@ -29,13 +28,13 @@ router.post(
         difficulty
       } = req.body; 
   
-      //Build profile object
-      const profileFields = {};
+      //Build user preference object
+      const userPrefFields = {};
   
-      profileFields.user = req.user.id;
-      if (maxPrice) profileFields.maxPrice = maxPrice;
-      if (maxTime) profileFields.maxTime = maxTime;
-      if (difficulty) profileFields.difficulty = difficulty;
+      userPrefFields.user = req.user.id;
+      if (maxPrice) userPrefFields.maxPrice = maxPrice;
+      if (maxTime) userPrefFields.maxTime = maxTime;
+      if (difficulty) userPrefFields.difficulty = difficulty;
 
       try {
         let userPreferences = await UserPreferences.findOne({ user: req.user.id });
@@ -44,7 +43,7 @@ router.post(
           //If there is a profile, update the profile.
           userPreferences = await UserPreferences.findOneAndUpdate(
             { user: req.user.id },
-            { $set: profileFields },
+            { $set: userPrefFields },
             { new: true }
           );
   
@@ -52,7 +51,7 @@ router.post(
         }
   
         //Create new userPreferences
-        userPreferences = new UserPreferences(profileFields);
+        userPreferences = new UserPreferences(userPrefFields);
   
         await userPreferences.save();
         return json(userPreferences);
@@ -70,7 +69,7 @@ router.post(
 // @desc     post user preferences of the user
 // @access   Private
 router.get(
-    "/me", 
+    getUserPreferences, 
     auth, 
     async (req, res) => {
   

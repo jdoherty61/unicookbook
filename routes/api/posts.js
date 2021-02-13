@@ -1,3 +1,4 @@
+//POSTS ... AKA RECIPES.
 //Required packages from package.json to be imported to create functional router API calls to MongoDB.
 const express = require("express");
 const router = express.Router();
@@ -32,7 +33,7 @@ router.post(
       ownerUni: user.university,
       user: req.user.id,
       title: req.body.title,
-      //needs to be changed when implementing front end etc - video
+      //needs to be changed when implementing front end etc - YOUTUBE VIDEO of this
       image: req.body.image,
       instructions: req.body.instructions,
       ingredients: req.body.ingredients,

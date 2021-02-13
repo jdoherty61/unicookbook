@@ -10,6 +10,8 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const UserPreferences = require("../../models/UserPreferences");
 const ShoppingList = require("../../models/ShoppingList");
+const Post = require("../../models/Post");
+const UserBudget = require("../../models/UserBudget");
 
 //URLS CONSTS
 const myProfileUrl = "/me";
@@ -172,9 +174,9 @@ router.delete(
         Post.deleteMany({ user: req.user.id }),
         Profile.findOneAndRemove({ user: req.user.id }),
         User.findOneAndRemove({ _id: req.user.id }),
-        UserPreferences.findOneAndRemove({ _id: req.user.id }),
-        ShoppingList.findOneAndRemove({ _id: req.user.id })
-        //and the budget
+        UserPreferences.findOneAndRemove({ user: req.user.id }),
+        ShoppingList.findOneAndRemove({ user: req.user.id }),
+        UserBudget.findOneAndRemove({ user: req.user.id })
 
       ]);
 
