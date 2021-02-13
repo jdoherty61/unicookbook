@@ -13,6 +13,7 @@ const PostSchema = new Schema({
   title: {
     type: String,
     required: true,
+    text: true //this is a work around for the search query. we need an index to search.
   },
   image: {
     type: String,
@@ -28,6 +29,10 @@ const PostSchema = new Schema({
     type: Number,
     required: true,
   },
+  totalPrice: {
+    type: Number,
+    required: true // Have to add the price here for query purposes
+  },
   chosenDifficulty: {
     type: String,
     required: true,
@@ -35,6 +40,7 @@ const PostSchema = new Schema({
   meal: {
     type: String,
     required: true,
+    text: true //this is a work around for the search query. we need an index to search.
   },
   public: {
     type: Boolean,
@@ -43,12 +49,14 @@ const PostSchema = new Schema({
   },
   ownerName: {
     type: String,
+    text: true //this is a work around for the search query. we need an index to search.
   },
   ownerAvatar: {
     type: String,
   },
   ownerUni: {
     type: String,
+    text: true //this is a work around for the search query. we need an index to search.
   },
   // ownerInformation: { type: Array, default: [], required: true}, //avatar, name, uni
   date: {

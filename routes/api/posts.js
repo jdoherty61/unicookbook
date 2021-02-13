@@ -8,6 +8,7 @@ const auth = require("../../middleware/auth");
 //Pulling in the models which will be used in the posts APIs
 const Post = require("../../models/Post");
 const User = require("../../models/User");
+const UserPreferences = require("../../models/UserPreferences");
 
 //URLS 
 const postUrl = "/";
@@ -16,6 +17,7 @@ const postLikeUrl = "/like/:id";
 const postUnlikePostUrl = "/unlike/:id"; 
 const commentOnPostUrl = "/comment/:id";
 const deleteCommentPostUrl = "/comment/:id/:comment_id";
+// const userPref = "/userPrefSearchFilter";
 
 // @route    POST api/posts
 // @desc     Create a post
@@ -35,6 +37,7 @@ router.post(
       title: req.body.title,
       //needs to be changed when implementing front end etc - YOUTUBE VIDEO of this
       image: req.body.image,
+      totalPrice: req.body.totalPrice, //total price should be calculated in the front end as the ingredeints price are calculated and added to payload
       instructions: req.body.instructions,
       ingredients: req.body.ingredients,
       effortTime: req.body.effortTime,
@@ -270,5 +273,7 @@ router.delete(
     }
 
 });
+
+
 
 module.exports = router;

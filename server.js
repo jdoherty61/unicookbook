@@ -21,6 +21,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/shoppingList', require('./routes/api/shoppingList'));
 app.use('/api/userPreferences', require('./routes/api/userPreferences'));
 app.use('/api/userBudget', require('./routes/api/userBudget'));
+app.use('/api/search', require('./routes/api/search'));
 
 //aka local host port 5000
 const PORT = process.env.PORT || 5000;
