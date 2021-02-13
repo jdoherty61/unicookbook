@@ -8,6 +8,8 @@ const { json } = require("express");
 //Required modules which will be used in the api callas imported below.
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const UserPreferences = require("../../models/UserPreferences");
+const ShoppingList = require("../../models/ShoppingList");
 
 //URLS CONSTS
 const myProfileUrl = "/me";
@@ -170,6 +172,10 @@ router.delete(
         Post.deleteMany({ user: req.user.id }),
         Profile.findOneAndRemove({ user: req.user.id }),
         User.findOneAndRemove({ _id: req.user.id }),
+        UserPreferences.findOneAndRemove({ _id: req.user.id }),
+        ShoppingList.findOneAndRemove({ _id: req.user.id })
+        //and the budget
+
       ]);
 
       res.json({ msg: "User deleted" });

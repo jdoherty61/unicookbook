@@ -9,7 +9,7 @@ const config = require("config");
 // If no token at all, will send a 401 with a denied message
 // if there is a token and it is invalid, it will run the catch
 // If there is, it will decode it with JWT verfiy which then set the decoded object to the req.user,
-// (AKA the user in that decoded token). -> to get privated routes eg profile.
+// (AKA the user in that decoded token). -> to get privSated routes eg profile.
 
 module.exports = function (req, res, next) {
   //Get token from header
