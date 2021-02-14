@@ -13,7 +13,7 @@ const UserPreferences = require("../../models/UserPreferences");
 //URL CONSTS 
 const userPreferencesPostsUrl = "/userPreferences";
 const basicSearchUrl =  "/:basicsearch";
-
+const searchByUniUrl = "/searchByUni";
 
 //DOCUMENTATION WOULD ALLOW TO RETURN ONLY OF 5, IF I STILL WANT TO DO THE CARDS. https://docs.mongodb.com/manual/reference/method/db.collection.find/
 //EG db.bios.find().limit( 5 ).sort( { name: 1 } ) ====> for the cards at the front end - but we could also do this in the request 
@@ -23,7 +23,7 @@ const basicSearchUrl =  "/:basicsearch";
 // @route    GET api/searchByUni
 // @desc     GET posts based of user's university.
 // @access   Private - users have to be logged in to see the posts.
-router.get('/searchByUni', auth, async (req, res) => {
+router.get(searchByUniUrl, auth, async (req, res) => {
 
   const { university } = await User.findById(req.user.id).select("-password");  //deconstruction object and therefore only returning the university.
   // console.log(university); 
