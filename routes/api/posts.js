@@ -5,6 +5,37 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 
+//Using package multer to store incoming files - https://www.youtube.com/watch?v=srPXMt1Q0nY&list=LL&index=1&ab_channel=Academind
+const multer = require('multer');
+
+//storage 
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {   //cb == callback
+      cb(null, './uploads/');         
+  },
+  filename: function(req, file, cb) {
+    //https://github.com/expressjs/multer/issues/513 - had to do a replace because windows users are different!
+      cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)  //adding a date to the image so it stops images from saving over the top of each other.
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png'){
+    cb(null, true)
+  } else {
+      //reject the file
+    cb(null, false)
+  }
+};
+
+const upload = multer({ 
+  storage: storage, 
+  limits: {
+  fileSize: 1024 * 1024 * 5 //5MG
+  },
+  fileFilter: fileFilter });
+
+
 //Pulling in the models which will be used in the posts APIs
 const Post = require("../../models/Post");
 const User = require("../../models/User");
@@ -25,8 +56,13 @@ const deleteCommentPostUrl = "/comment/:id/:comment_id";
 router.post(
   postUrl,
   auth,
+  upload.single('image'), //one file only
   async (req, res) => {
   try {
+
+    console.log(req.file);
+
+
     const user = await User.findById(req.user.id).select("-password");
 
     const newPost = new Post({
@@ -36,7 +72,7 @@ router.post(
       user: req.user.id,
       title: req.body.title,
       //needs to be changed when implementing front end etc - YOUTUBE VIDEO of this
-      image: req.body.image,
+      image: req.file.path,
       totalPrice: req.body.totalPrice, //total price should be calculated in the front end as the ingredeints price are calculated and added to payload
       instructions: req.body.instructions,
       ingredients: req.body.ingredients,

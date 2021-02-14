@@ -18,7 +18,7 @@ const PostSchema = new Schema({
   image: {
     type: String,
     required: true,
-    default: "uploads/defaultimage.png", //needs to change
+    default: "uploads/defaultimage.png", //have in place as a placeholder in case the image does not upload right.
   },
   instructions: {
     type: String,
@@ -67,6 +67,13 @@ const PostSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
+      },
+    },
+  ],
+  saves: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,  
       },
     },
   ],

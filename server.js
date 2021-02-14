@@ -7,6 +7,9 @@ const app = express();
 //Connect to the database
 connectDB();
 
+//making the uplaods folder public so that we can extract the uploaded image in the front end for the recipe
+app.use('/uploads', express.static('uploads'));
+
 // Init middleware
 app.use(express.json({ extended: false }));
 

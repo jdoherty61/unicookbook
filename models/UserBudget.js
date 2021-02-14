@@ -17,6 +17,10 @@ const UserBudgetSchema = new mongoose.Schema({
       type: String,
       required: true,
       default: "MONTHLY"
+  },
+  totalBudget: {          // Front end will calculate this, and then push up to database. This will be easier when reused in certain areas of application.
+    type: Number,
+    default: null
   }
 //   date: {
 //     type: Date,

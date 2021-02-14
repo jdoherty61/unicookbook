@@ -7,7 +7,11 @@ const ShoppingListSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    list: { type: Array, default: []}
+    list: { type: Array, default: []},
+    // listTotalValue: {
+    //     type: Number,
+    //     default: null
+    // }
 });
 
 
