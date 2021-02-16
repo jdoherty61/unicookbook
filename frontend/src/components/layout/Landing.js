@@ -1,8 +1,12 @@
 import React, { Image } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../../images/logo.png";
 import styled from 'styled-components';
 import colorScheme from '../../styles/mainColorPallete';
+
+//importing redux so that can check auth, and not enable already signed users from landing on this page again. they will be redirected to home.
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const LandingPageSection = styled.section`
   background-color: ${colorScheme.orange};
@@ -14,7 +18,14 @@ const LandingPageSection = styled.section`
 `;
 
 
-export const Landing = () => {
+export const Landing = ({ isAuthenticated }) => {
+
+  //if the user is logged in, they should be redirected to their home page
+  if(isAuthenticated){
+    return <Redirect to='/home'/>
+  }
+
+
   return (
     <LandingPageSection>
         <div className="landing-inner">
@@ -34,4 +45,12 @@ export const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);

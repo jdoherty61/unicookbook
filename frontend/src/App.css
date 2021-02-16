@@ -43,7 +43,7 @@ img {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0 1rem;
   margin-top: 6rem;
   margin-bottom: 3rem;
 
@@ -537,7 +537,8 @@ button {
 @media (max-width: 700px) {
   .container {
     /* MIGHT NEED TO FIX */
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
+    margin-top: 6rem;
   }
 
   .hide-sm {
