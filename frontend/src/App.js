@@ -19,6 +19,7 @@ import BudgetCalculator from './components/budgetCalculator/BudgetCalculator';
 import Search from './components/search/Search';
 import ShoppingList from './components/shoppingList/ShoppingList';
 import Post from './components/post/Post';
+import PostForm from './components/post/PostForm';
 
 //Redux imports
 import { Provider } from "react-redux"; //need a provider to pass all the information created by the redux/reducer down to components
@@ -59,7 +60,7 @@ const App = () => {
               <PrivateRoute exact path="/shoppingList" component={ShoppingList} />
 
               <PrivateRoute exact path="/posts/:id" component={Post} />
-
+              <PrivateRoute exact path="/addRecipe" component={PostForm} />
             </Switch>
           </section>
           <BottomNavBar />

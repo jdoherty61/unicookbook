@@ -1,10 +1,12 @@
 // import { get } from 'mongoose';
 import React, { useEffect, useState } from 'react'
 import { getPostByID } from '../../actions/posts';
+import { addToUserShoppingList } from '../../actions/shoppingList';
 import  defaultImg from '../../images/logo.png';
 
 const innitialRecipeState = {
     image: defaultImg
+    //should I add more here?
 };
 
 ///MIGHT DO THIS WITH THE POSTS...
@@ -29,6 +31,30 @@ export const Post = ({ match }) => {
     return (
         <>
          <div>
+             <button
+             //at the min take in the post info -- HAVE TO TURN INTO FORM
+            //  onClick={() => addToUserShoppingList(        {
+            //     "recipeName": "Chicken parma pasta",
+            //     "ingredients": [
+            //         {
+            //             "item": "chicken",
+            //             "price": 0.2,
+            //             "checked": false
+            //         },
+            //         {
+            //             "item": "pasta",
+            //             "price": 0.4,
+            //             "checked": false
+            //         },
+            //         {
+            //             "item": "pesto",
+            //             "price": 9,
+            //             "checked": false
+            //         }
+            //     ]
+            // })}
+             >
+                 ShoppingList</button>
             Add to shopping list 
         </div>
         <div>

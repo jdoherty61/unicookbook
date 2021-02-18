@@ -9,6 +9,40 @@ export const getCurrentUserShoppingList = async () => {
     try{
         const res = await axios.get('api/shoppingList/me');
 
+        return res.data;
+
+    } catch (err) {
+    
+        console.log(err.response.statusText);
+        
+        //should i return something here? just incase.
+    }
+};
+
+
+// Add to shopping list 
+export const addToUserShoppingList = async () => {
+    //hitting the backend api created!
+    try{
+        const res = await axios.put('/api/shoppingList/list');
+
+        //only want to return the list in the shopping list, not the user - just will make it easier to deconstruct
+        return res.data.list;
+
+    } catch (err) {
+    
+        console.log(err.response.statusText);
+        
+        //should i return something here? just incase.
+    }
+};
+
+// clear shopping list 
+export const clearUserShoppingList = async shoppingListId => {
+    //hitting the backend api created!
+    try{
+        const res = await axios.delete(`/api/shoppingList/list/${shoppingListId}`);
+
         //only want to return the list in the shopping list, not the user - just will make it easier to deconstruct
         return res.data.list;
 
