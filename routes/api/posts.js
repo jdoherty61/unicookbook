@@ -50,6 +50,11 @@ const commentOnPostUrl = "/comment/:id";
 const deleteCommentPostUrl = "/comment/:id/:comment_id";
 // const userPref = "/userPrefSearchFilter";
 
+
+
+//#############################TODO LIST for next iteration ######################################
+//Add api to link to other students profile by their id. 
+
 // @route    POST api/posts
 // @desc     Create a post
 // @access   Private
@@ -103,6 +108,25 @@ router.get(postUrl, auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+
+// @route    GET api/posts/me
+// @desc     GET users posts - for profile page
+// @access   Private - users have to be logged in to see the posts.
+router.get('/me', auth, async (req, res) => {
+  try {
+    const posts = await Post.find({
+      user: req.user.id
+    }).sort({ date: -1 }); // the most recent
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
 
 // @route    GET api/posts/:id
 // @desc     GET post by id

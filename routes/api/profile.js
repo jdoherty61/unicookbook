@@ -127,7 +127,7 @@ router.get(
   async (req, res) => {
 
     try {
-      //Get all the profiles alongside the name and avatar of the user
+      //Get profiles alongside the name and avatar of the user
       const profile = await Profile.findOne({
         user: req.params.user_id,
       }).populate("user", [

@@ -1,17 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 //redux
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
+import { getCurrentUserPosts } from "../../actions/posts";
 
 //custom compoenents
 import Spinner from "../layout/CustomSpinner";
 import colorScheme from "../../styles/mainColorPallete";
 
+const DisplayPosts = ({ userRecipes }) => {
+  return userRecipes.map((recipe) => {
+    return (
+      <div key={recipe._id}>
+        <Link to={`/posts/${recipe._id}`}>{recipe.title}</Link>
+      </div>
+    );
+  });
+};
+
 const ProfileHeader = ({ user, profile }) => {
-  console.log(user);
-  console.log(profile);
+  // console.log(user);
+  // console.log(profile);
   return (
     //Image
     //Avatar
@@ -55,15 +67,25 @@ const Profile = ({
   auth: { user },
   profile: { profile, loading },
 }) => {
+  const [userRecipes, setUserRecipes] = useState([]);
+
   useEffect(() => {
     getCurrentProfile();
+    getCurrentUserPosts().then((recipesArray) => {
+      console.log(recipesArray);
+      setUserRecipes(recipesArray);
+    });
   }, []);
 
+  // the profile is loading
   return loading && profile == null ? (
     <Spinner />
   ) : (
     <>
       <ProfileHeader user={user} profile={profile} />
+
+      <div>Tabs for posts, saved, locked</div>
+      <DisplayPosts userRecipes={userRecipes}/>
     </>
   );
 };

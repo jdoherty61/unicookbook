@@ -15,6 +15,10 @@ import Login from "./components/auth/Login";
 //Screens
 import Home from './components/home/Home';
 import Profile from './components/profile/Profile';
+import BudgetCalculator from './components/budgetCalculator/BudgetCalculator';
+import Search from './components/search/Search';
+import ShoppingList from './components/shoppingList/ShoppingList';
+import Post from './components/post/Post';
 
 //Redux imports
 import { Provider } from "react-redux"; //need a provider to pass all the information created by the redux/reducer down to components
@@ -50,14 +54,12 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/home" component={Home} />
               <PrivateRoute exact path="/myprofile" component={Profile} />
-              {/* 
-            profile route
-            home route
-            shopping list route
-            search route
-            budget route
-            recipe route
-            */}
+              <PrivateRoute exact path="/budgetCalculator" component={BudgetCalculator} />
+              <PrivateRoute exact path="/search" component={Search} />
+              <PrivateRoute exact path="/shoppingList" component={ShoppingList} />
+
+              <PrivateRoute exact path="/posts/:id" component={Post} />
+
             </Switch>
           </section>
           <BottomNavBar />

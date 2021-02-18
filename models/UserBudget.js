@@ -14,9 +14,16 @@ const UserBudgetSchema = new mongoose.Schema({
   income: { type: Array, default: [] },
   spending: { type: Array, default: [] },
   duration: {
+    number: {
+      type: Number,
+      required: true,
+      default: 1
+    },
+    timescale: {
       type: String,
       required: true,
       default: "MONTHLY"
+    }
   },
   totalBudget: {          // Front end will calculate this, and then push up to database. This will be easier when reused in certain areas of application.
     type: Number,

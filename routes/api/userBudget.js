@@ -56,7 +56,7 @@ router.post(postUserBudgetUrl, auth, async (req, res) => {
 });
 
 // @route    GET api/userBudget/me
-// @desc     post user preferences of the user
+// @desc     get user preferences of the user
 // @access   Private
 router.get(getUserBudgetUrl, auth, async (req, res) => {
 
