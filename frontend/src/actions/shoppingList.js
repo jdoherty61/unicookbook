@@ -21,10 +21,17 @@ export const getCurrentUserShoppingList = async () => {
 
 
 // Add to shopping list 
-export const addToUserShoppingList = async () => {
+export const addToUserShoppingList = async recipe => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
     //hitting the backend api created!
     try{
-        const res = await axios.put('/api/shoppingList/list');
+        const res = await axios.put('/api/shoppingList/list', recipe, config);
 
         //only want to return the list in the shopping list, not the user - just will make it easier to deconstruct
         return res.data.list;
