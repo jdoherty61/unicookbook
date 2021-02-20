@@ -28,7 +28,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
     "multer": "^1.4.2",
-    "request": "^2.88.2"
+    "react-router-native": "^5.2.0",
+    "request": "^2.88.2",
+    "styled-card-component": "^4.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import { FlatList } from "react-native-web";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
 //redux
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
@@ -11,12 +14,47 @@ import { getCurrentUserPosts } from "../../actions/posts";
 import Spinner from "../layout/CustomSpinner";
 import colorScheme from "../../styles/mainColorPallete";
 
+import styled from "styled-components";
+import { MiniRecipeCard } from "../post/MiniRecipeCard";
+
+
+const StyledTabs = styled(Tabs)`
+  color: ${colorScheme.orange};
+
+  .react-tabs__tab--selected {
+    background: ${colorScheme.lightBackground};
+    border-color: ${colorScheme.lightBackground};
+    color: ${colorScheme.blue};
+    border-radius: 5px 5px 0 0;
+  }
+`;
+
 const DisplayPosts = ({ userRecipes }) => {
   return userRecipes.map((recipe) => {
+    console.log(recipe);
     return (
-      <div key={recipe._id}>
-        <Link to={`/posts/${recipe._id}`}>{recipe.title}</Link>
-      </div>
+      // <div key={recipe._id}>
+      //   <Link to={`/posts/${recipe._id}`}>{recipe.title}</Link>
+      // </div>
+      // <Link to={`/posts/${recipe._id}`}>
+      // <StyledCard key={recipe.id}>
+      //   <StyledImage src={`../../../../${recipe.image}`} />
+      //   <StyledCardBody>
+      //     <StyledCardText>
+      //       {recipe.title}
+      //       </StyledCardText>
+      //       <StyledCardText>
+      //       {recipe.totalPrice}{recipe.effortTime}
+      //       </StyledCardText>
+
+      //     {/* <CardFooter>
+      //       {recipe.totolPrice}
+      //       {recipe.effortTime}
+      //     </CardFooter> */}
+      //   </StyledCardBody>
+      // </StyledCard>
+      // </Link>
+      <MiniRecipeCard recipe={recipe} />
     );
   });
 };
@@ -30,7 +68,7 @@ const ProfileHeader = ({ user, profile }) => {
     //Degree
     //Name
     <>
-      <div style={{ display: "flex", backgroundColor: colorScheme.pale }}>
+      <div style={{ display: "flex"}}>
         <img
           src={user.avatar} //refactored to allow users to edit their profile pics
           alt="new"
@@ -40,6 +78,7 @@ const ProfileHeader = ({ user, profile }) => {
             borderRadius: 100,
             borderColor: "grey",
             borderWidth: 2,
+            border: "1px solid #33e",
             margin: 5,
             alignSelf: "center",
           }}
@@ -55,8 +94,8 @@ const ProfileHeader = ({ user, profile }) => {
 
         {/* total posts */}
       </div>
-      <div style={{ backgroundColor: colorScheme.pale, paddingTop: 5 }}>
-        {profile.bio === null ? <> user has no bio </> : profile.bio}
+      <div style={{ paddingTop: 5 }}>
+        {profile.bio !== null && profile.bio}
       </div>
     </>
   );
@@ -84,8 +123,47 @@ const Profile = ({
     <>
       <ProfileHeader user={user} profile={profile} />
 
-      <div>Tabs for posts, saved, locked</div>
-      <DisplayPosts userRecipes={userRecipes}/>
+      <StyledTabs>
+        <TabList>
+          <Tab>Posts</Tab>
+          <Tab>Saved</Tab>
+          <Tab>Locked</Tab>
+        </TabList>
+
+        <TabPanel    style={{
+              backgroundColor: colorScheme.lightBackground,
+              marginTop: -11,
+              minHeight: 30,
+              minHeight: 515,
+            }}
+            >
+          <FlatList
+            horizontal={false}
+            data={userRecipes}
+            keyExtractor={(item) => item._id}
+            numColumns={3}
+            renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
+          />
+        </TabPanel>
+        <TabPanel    style={{
+              backgroundColor: colorScheme.lightBackground,
+              marginTop: -11,
+              minHeight: 30,
+              minHeight: 515,
+            }}>
+          <h2>Any content 2</h2>
+        </TabPanel>
+        <TabPanel    style={{
+              backgroundColor: colorScheme.lightBackground,
+              marginTop: -11,
+              minHeight: 30,
+              minHeight: 515,
+            }}>
+          <h2>Any content 3</h2>
+        </TabPanel>
+      </StyledTabs>
+
+      {/* <DisplayPosts userRecipes={userRecipes} /> */}
     </>
   );
 };

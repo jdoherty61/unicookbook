@@ -4,15 +4,15 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { Link, Redirect } from "react-router-dom";
 import logo from "../../images/logo.png";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { IoIosArrowBack } from "react-icons/io";
 import { Button } from "react-bootstrap";
 import colorScheme from "../../styles/mainColorPallete";
 
 //working with redux
-import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
-import { register } from '../../actions/auth';
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 
 //make an innitial state
 const initialState = {
@@ -35,7 +35,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
     password2,
     degree,
     yearOfDegree,
-    university
+    university,
   } = formData;
 
   //Allows to set state of individual members within the state using the name on the inpurt and the value.
@@ -45,7 +45,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (data) => {
     data.preventDefault();
     if (password !== password2) {
-      setAlert("Passwords do not match", 'danger'); 
+      setAlert("Passwords do not match", "danger");
       // console.log("Passwords do not match");
     } else {
       register({
@@ -55,25 +55,25 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
         password2,
         degree,
         yearOfDegree,
-        university
+        university,
       });
     }
   };
 
-  //If register successful 
-  if(isAuthenticated){
-    return <Redirect to="/home"/>
+  //If register successful
+  if (isAuthenticated) {
+    return <Redirect to="/home" />;
   }
 
   return (
-    <>
-          <div>
+    <div style={{padding:20}}>
+      <div>
         <Link to="/">
           <IoIosArrowBack style={{ color: "black" }} size={25} />
         </Link>
       </div>
-    <div style={{textAlign: 'center'}}>
-      <img alt={"logo"} src={logo} style={{ height: 100, width: 100}} />
+      <div style={{ textAlign: "center" }}>
+        <img alt={"logo"} src={logo} style={{ height: 100, width: 100 }} />
       </div>
       <h1 className="large text-primary">Sign Up</h1>
       <form className="form" onSubmit={(data) => onSubmit(data)}>
@@ -166,7 +166,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </>
+    </div>
   );
 };
 
@@ -174,11 +174,11 @@ Register.propTypes = {
   //Standard - ensuring that the props being passed into this component are of type stated below.
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Register);

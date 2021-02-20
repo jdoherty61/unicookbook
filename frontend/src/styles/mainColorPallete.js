@@ -7,7 +7,8 @@ const colorScheme = {
     red: '#FF8551',
     shadow: '#C05A2E',
     pale: '#FFE5D0',
-
+    
+    lightBackground: '#FDE3CE',
     textBlue: '#0096B0',
     backgroundScreenColor: '#FFC89B',
     basicText: '#000000',

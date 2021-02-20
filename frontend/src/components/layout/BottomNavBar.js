@@ -1,7 +1,7 @@
 //Required imports
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Navbar, Nav } from "react-bootstrap";
 
 //connecting to redux
 import { connect } from "react-redux";
@@ -28,43 +28,40 @@ const UserNavigationBarContent = () => {
   const history = useHistory();
 
   return (
-    <ul>
-      <li>
+    <>
+      
         {/* <Link to="/home.html"> */}
         <StyledButton onClick={() => history.push("/home")}>
           <AiFillHome style={{ color: "black" }} size={25} />
         </StyledButton>
         {/* </Link> */}
-      </li>
-      <li>
+     
+     
         {/* <Link to="/shoppingList.html"> */}
         <StyledButton onClick={() => history.push("/shoppingList")}>
           <FiList style={{ color: "black" }} size={25} />
         </StyledButton>
         {/* </Link> */}
-      </li>
-      <li>
+      
+     
         {/* <Link to="/search.html"> */}
         <StyledButton onClick={() => history.push("/search")}>
           <BsSearch style={{ fill: "black" }} size={25} />
         </StyledButton>
         {/* </Link> */}
-      </li>
-      <li>
+     
         {/* <Link to="/budgetCalculator.html"> */}
         <StyledButton onClick={() => history.push("/budgetCalculator")}>
           <FaPiggyBank style={{ fill: "black" }} size={25} />
         </StyledButton>
         {/* </Link> */}
-      </li>
-      <li>
+      
         {/* <Link to="/profile.html"> */}
         <StyledButton onClick={() => history.push("/myprofile")}>
           <GiCook style={{ fill: "black" }} size={25} />
         </StyledButton>
         {/* </Link> */}
-      </li>
-    </ul>
+        </>
   );
 };
 

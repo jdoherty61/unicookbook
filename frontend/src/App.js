@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Private routing component created
+import {View, Text} from 'react-native';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 //General layout
@@ -30,6 +31,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 
 //styling
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 if (localStorage.token) {

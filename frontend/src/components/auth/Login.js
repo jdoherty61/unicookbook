@@ -40,7 +40,7 @@ export const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <>
+    <div style={{padding:20}}>
       <div>
         <Link to="/">
           <IoIosArrowBack style={{ color: "black" }} size={25} />
@@ -77,7 +77,7 @@ export const Login = ({ login, isAuthenticated }) => {
       <p className="my-1">
         Don't have an account? <Link to="/Register">Sign Up</Link>
       </p>
-    </>
+      </div>
   );
 };
 
