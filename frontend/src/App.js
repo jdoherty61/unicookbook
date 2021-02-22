@@ -60,7 +60,6 @@ const App = () => {
               <PrivateRoute exact path="/budgetCalculator" component={BudgetCalculator} />
               <PrivateRoute exact path="/search" component={Search} />
               <PrivateRoute exact path="/shoppingList" component={ShoppingList} />
-
               <PrivateRoute exact path="/posts/:id" component={Post} />
               <PrivateRoute exact path="/addRecipe" component={PostForm} />
             </Switch>

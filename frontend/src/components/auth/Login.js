@@ -5,6 +5,7 @@ import "react-dropdown/style.css";
 import { Link, Redirect } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { IoIosArrowBack } from "react-icons/io";
+
 // import { Button } from "react-bootstrap";
 import colorScheme from "../../styles/mainColorPallete";
 
@@ -40,7 +41,7 @@ export const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div style={{padding:20}}>
+    <div style={{ padding: 20 }}>
       <div>
         <Link to="/">
           <IoIosArrowBack style={{ color: "black" }} size={25} />
@@ -49,7 +50,9 @@ export const Login = ({ login, isAuthenticated }) => {
       <div style={{ textAlign: "center" }}>
         <img alt={"logo"} src={logo} style={{ height: 100, width: 100 }} />
       </div>
-      <h1 className="large text-primary">Sign In</h1>
+      <h1 style={{ color: colorScheme.blue }} className="large">
+        Sign In
+      </h1>
       <form className="form" onSubmit={(data) => onSubmit(data)}>
         <div className="form-group">
           <input
@@ -77,7 +80,7 @@ export const Login = ({ login, isAuthenticated }) => {
       <p className="my-1">
         Don't have an account? <Link to="/Register">Sign Up</Link>
       </p>
-      </div>
+    </div>
   );
 };
 

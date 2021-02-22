@@ -35,6 +35,12 @@ const ListIngredients = ({ ingredients }) => {
   if (ingredients.length === 0) {
     return <> no ingredients</>;
   } else {
+      const ingredientsList = ingredients.map(ingred => {
+        return (
+          <li>{ingred}</li>
+        );
+      })
+      return ingredientsList;
   }
 };
 
@@ -92,7 +98,11 @@ export const Post = ({ match }) => {
             {/* will be for people who own the recipe */}
           </div>
         </div>
-        <Card.Img variant="top" src={`../../../../${post.image}`} />
+        <Card.Img style={{
+          height: 300,
+          width: 325,
+          alignSelf: 'center'
+        }} variant="top" src={`../../../../${post.image}`} />
         <Card.Body style={{ padding: 10 }}>
           <Card.Title style={{ display: "flex" }}>
             <div>{post.title}</div>
@@ -148,6 +158,7 @@ export const Post = ({ match }) => {
             {post.ingredients.length === 0 ? (
               <> no Ingredients</>
             ) : (
+              // console.log(post.ingredients)
               <ListIngredients ingredients={post.ingredients} />
             )}
           </div>
@@ -172,7 +183,7 @@ export const Post = ({ match }) => {
             color: "black",
           }}
         >
-          <div style={{ padding: 20 }}>Comments Feature To Come</div>
+          <div style={{ padding: 20 }}>Comments Feature To Come! Will allow users to say they got the recipe for cheap at spar etc</div>
         </TabPanel>
       </StyledTabs>
 </>

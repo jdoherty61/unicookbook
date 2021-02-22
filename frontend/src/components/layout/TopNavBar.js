@@ -56,7 +56,7 @@ export const TopNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 <BsList style={{ color: "black" }} size={25} />
               {/* </Button> */}
             </Nav.Link>
-            <Navbar.Brand>UniCookbook</Navbar.Brand>
+            <Navbar.Brand>UniCookBook</Navbar.Brand>
             <Nav.Link style={{paddingLeft: 70}} href="/addRecipe">
     
                 {/* <Button style={{ backgroundColor: colorScheme.orange }}> */}

@@ -30,9 +30,9 @@ const ListIngredredients = ({ ingredients }) => {
       >
         <div>
           {/* {item.checked} */}
-          {item.item}
+          {item}
         </div>
-        <div style={{ right: 20, position: "absolute" }}>£{item.price}</div>
+        {/* <div style={{ right: 20, position: "absolute" }}>£{item.price}</div> */}
       </div>
     );
   });
@@ -75,7 +75,7 @@ export const ShoppingList = () => {
     setIsLoading(true);
 
     getCurrentUserShoppingList().then((shoppingList) => {
-      console.log(shoppingList);
+      // console.log(shoppingList);
       setShoppingList(shoppingList);
       //function to get the shopping list total
     });
@@ -87,6 +87,8 @@ export const ShoppingList = () => {
 
     setIsLoading(false);
   }, [isLoading]);
+
+  console.log(list);
 
   return (
     <div>
@@ -127,6 +129,7 @@ export const ShoppingList = () => {
               Export
             </Button>
           </div>
+          {/* {console.log(`list list list ${list.list} ///// ${list}`)} */}
           <ShoppingListRecipes list={list.list} />
         </>
       )}

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import styled from "styled-components";
 import colorScheme from "../../styles/mainColorPallete";
 import { Button } from "react-bootstrap";
+//should i remove this page??
 
 const StyledTab = styled(Tabs)`
   color: ${colorScheme.orange};
@@ -18,6 +19,12 @@ const StyledTab = styled(Tabs)`
 `;
 
 const Home = (props) => {
+
+  useEffect(() => {
+    // getFiveUserPreferences();
+  }, []);
+
+
   return (
     <>
       {/* make this look nice and then the search can just have buttons - scratch the other design  */}

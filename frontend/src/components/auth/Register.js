@@ -6,7 +6,6 @@ import { Link, Redirect } from "react-router-dom";
 import logo from "../../images/logo.png";
 import PropTypes from "prop-types";
 import { IoIosArrowBack } from "react-icons/io";
-import { Button } from "react-bootstrap";
 import colorScheme from "../../styles/mainColorPallete";
 
 //working with redux
@@ -75,7 +74,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
       <div style={{ textAlign: "center" }}>
         <img alt={"logo"} src={logo} style={{ height: 100, width: 100 }} />
       </div>
-      <h1 className="large text-primary">Sign Up</h1>
+      <h2 style={{color: colorScheme.blue}}>Sign Up</h2>
       <form className="form" onSubmit={(data) => onSubmit(data)}>
         <div className="form-group">
           <input
@@ -125,7 +124,7 @@ export const Register = ({ setAlert, register, isAuthenticated }) => {
               "Software Engineering",
               "Economics and Finance",
               "Chemistry",
-              "Media Studies",
+              "Media Studies"
             ]} //This would be populated by multiple courses in the UK university, for now just have a few. But this should be dynamically retrieved from the database
             value={degree}
             onChange={(val) => setFormData({ ...formData, degree: val.value })}
