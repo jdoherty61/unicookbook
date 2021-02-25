@@ -16,7 +16,7 @@ import colorScheme from "../../styles/mainColorPallete";
 
 import styled from "styled-components";
 import { MiniRecipeCard } from "../post/MiniRecipeCard";
-
+import EmptyView from "../layout/EmptyView";
 
 const StyledTabs = styled(Tabs)`
   color: ${colorScheme.orange};
@@ -29,36 +29,6 @@ const StyledTabs = styled(Tabs)`
   }
 `;
 
-const DisplayPosts = ({ userRecipes }) => {
-  return userRecipes.map((recipe) => {
-    console.log(recipe);
-    return (
-      // <div key={recipe._id}>
-      //   <Link to={`/posts/${recipe._id}`}>{recipe.title}</Link>
-      // </div>
-      // <Link to={`/posts/${recipe._id}`}>
-      // <StyledCard key={recipe.id}>
-      //   <StyledImage src={`../../../../${recipe.image}`} />
-      //   <StyledCardBody>
-      //     <StyledCardText>
-      //       {recipe.title}
-      //       </StyledCardText>
-      //       <StyledCardText>
-      //       {recipe.totalPrice}{recipe.effortTime}
-      //       </StyledCardText>
-
-      //     {/* <CardFooter>
-      //       {recipe.totolPrice}
-      //       {recipe.effortTime}
-      //     </CardFooter> */}
-      //   </StyledCardBody>
-      // </StyledCard>
-      // </Link>
-      <MiniRecipeCard recipe={recipe} />
-    );
-  });
-};
-
 const ProfileHeader = ({ user, profile }) => {
   // console.log(user);
   // console.log(profile);
@@ -68,7 +38,7 @@ const ProfileHeader = ({ user, profile }) => {
     //Degree
     //Name
     <>
-      <div style={{ display: "flex"}}>
+      <div style={{ display: "flex" }}>
         <img
           src={user.avatar} //refactored to allow users to edit their profile pics
           alt="new"
@@ -94,9 +64,7 @@ const ProfileHeader = ({ user, profile }) => {
 
         {/* total posts */}
       </div>
-      <div style={{ paddingTop: 5 }}>
-        {profile.bio !== null && profile.bio}
-      </div>
+      <div style={{ paddingTop: 5 }}>{profile.bio !== null && profile.bio}</div>
     </>
   );
 };
@@ -130,40 +98,51 @@ const Profile = ({
           <Tab>Locked</Tab>
         </TabList>
 
-        <TabPanel    style={{
-              backgroundColor: colorScheme.lightBackground,
-              marginTop: -11,
-              minHeight: 30,
-              minHeight: 515,
-            }}
-            >
-          <FlatList
-            horizontal={false}
-            data={userRecipes}
-            keyExtractor={(item) => item._id}
-            numColumns={3}
-            renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
-          />
+        <TabPanel
+          style={{
+            backgroundColor: colorScheme.lightBackground,
+            marginTop: -11,
+            minHeight: 30,
+            minHeight: 515,
+          }}
+        >
+          {userRecipes.length === 0 ? (
+            <EmptyView type={"Created"} />
+          ) : (
+            <FlatList
+              horizontal={false}
+              data={userRecipes}
+              keyExtractor={(item) => item._id}
+              numColumns={3}
+              renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
+            />
+          )}
         </TabPanel>
-        <TabPanel    style={{
-              backgroundColor: colorScheme.lightBackground,
-              marginTop: -11,
-              minHeight: 30,
-              minHeight: 515,
-            }}>
-          <h2>Any content 2</h2>
+        <TabPanel
+          style={{
+            backgroundColor: colorScheme.lightBackground,
+            marginTop: -11,
+            minHeight: 30,
+            minHeight: 515,
+          }}
+        >
+          {/* Needs developed - empty view for now */}
+
+          <EmptyView type={"Saved"} />
         </TabPanel>
-        <TabPanel    style={{
-              backgroundColor: colorScheme.lightBackground,
-              marginTop: -11,
-              minHeight: 30,
-              minHeight: 515,
-            }}>
-          <h2>Any content 3</h2>
+        <TabPanel
+          style={{
+            backgroundColor: colorScheme.lightBackground,
+            marginTop: -11,
+            minHeight: 30,
+            minHeight: 515,
+          }}
+        >
+          {/* Needs developed - empty view for now */}
+          <EmptyView type={"Locked"} />
         </TabPanel>
       </StyledTabs>
 
-      {/* <DisplayPosts userRecipes={userRecipes} /> */}
     </>
   );
 };

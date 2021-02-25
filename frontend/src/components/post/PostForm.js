@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { addPost } from "../../actions/posts";
+import { Redirect } from "react-router-dom";
 import { Card, InputGroup, Button, Modal, ListGroup } from "react-bootstrap";
 import styled from "styled-components";
 import AddIngredientsModal from "./AddIngredientsModal";
+import { useLocation, useHistory } from "react-router-dom";
+
 {
   /* help with this
       https://stackoverflow.com/questions/41878838/how-do-i-set-multipart-in-axios-with-react
@@ -48,8 +51,9 @@ const PostForm = (props) => {
       <form
         class="form my-1"
         style={{overflow: 'hidden'}}
+        action='/home'
         onSubmit={(e) => {
-          e.preventDefault();
+          // e.preventDefault(); //this prevents the form from going off the addRecipe view - basically disregards to action.
           const formData = new FormData();
           formData.append("image", post.image);
           formData.append("title", post.title);
@@ -203,7 +207,7 @@ const PostForm = (props) => {
           </Button>
         </div>
 
-        <input type="submit" class="btn btn-dark my-1" value="Add Recipe" />
+        <input type="submit" action='/home' class="btn btn-dark my-1" value="Add Recipe" />
       </form>
     </div>
   );

@@ -1,4 +1,4 @@
-// api calls here
+// api calls her
 
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -54,7 +54,7 @@ export const addPost = async (formData) => {
 
 
         return res.data; // if successful redirect to home page?
-
+    
     } catch (err) {
     
         console.log(err.response.statusText);

@@ -61,7 +61,7 @@ export const Post = ({ match }) => {
     });
 
   }, []);
-
+  
   return (
     <>
     {!isLoading &&

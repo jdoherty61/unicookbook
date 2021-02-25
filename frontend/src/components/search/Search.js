@@ -1,7 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import { FormControl, InputGroup, Button } from "react-bootstrap";
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
+import { useHistory } from "react-router-dom";
+//todo: the title search
+//todo: the category search
+//todo: API actions for all
+
 export const Search = () => {
+  const [titleSearch, setTitleSearch] = useState('');
+
+  const history = useHistory();
+
   return (
     <Container>
       <div style={{ marginTop: 20, padding: 10 }}>
@@ -15,10 +24,13 @@ export const Search = () => {
               boxShadow: "0px -2px 6px 1px #c05a2e",
             }}
             placeholder="Search by title"
+            value={titleSearch}
+            onChange={(val) => setTitleSearch(val.target.value)}
           />
           <InputGroup.Append>
             <Button
               variant="outline-secondary"
+              onClick={() => history.push(`/search/titlesearch/${titleSearch}`)}
               style={{
                 borderRadius: "0px 20px 20px 0px",
                 boxShadow: "0px -2px 6px 1px #c05a2e",
@@ -31,8 +43,8 @@ export const Search = () => {
       </div>
 
       <div style={{marginTop: 100}}>
-      <Button  size="lg" block >Search By Your Preferences</Button>
-      <Button  size="lg" block>Search By Your Uni</Button>
+      <Button onClick={() => history.push("/search/userpreferences")} size="lg" block >Search By Your Preferences</Button>
+      <Button onClick={() => history.push('/search/unisearch')} size="lg" block>Search By Your Uni</Button>
       </div>
       <div style={{marginTop: 100}}>
         <h4 style={{ color: "white" }}>Category</h4>

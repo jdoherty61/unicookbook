@@ -21,6 +21,10 @@ import Search from './components/search/Search';
 import ShoppingList from './components/shoppingList/ShoppingList';
 import Post from './components/post/Post';
 import PostForm from './components/post/PostForm';
+import UserPreferencesSearchResults from './components/search/UserPreferencesSearchResults';
+import UniSearchResults from './components/search/UniSearchResults';
+import TitleSearch from './components/search/TitleSearch';
+import { Filter } from "./components/search/Filter";
 
 //Redux imports
 import { Provider } from "react-redux"; //need a provider to pass all the information created by the redux/reducer down to components
@@ -33,6 +37,7 @@ import { loadUser } from "./actions/auth";
 //styling
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
+
 
 if (localStorage.token) {
   //There must be a token inside local storage in order to have a successful authorisation. If not, there will be an authorisation error.
@@ -60,8 +65,25 @@ const App = () => {
               <PrivateRoute exact path="/budgetCalculator" component={BudgetCalculator} />
               <PrivateRoute exact path="/search" component={Search} />
               <PrivateRoute exact path="/shoppingList" component={ShoppingList} />
+              
               <PrivateRoute exact path="/posts/:id" component={Post} />
               <PrivateRoute exact path="/addRecipe" component={PostForm} />
+
+              <PrivateRoute exact path="/search/userpreferences" component={UserPreferencesSearchResults} />
+              <PrivateRoute exact path="/search/unisearch" component={UniSearchResults} />
+              <PrivateRoute exact path="/search/titlesearch/:id" component={TitleSearch} />
+              <PrivateRoute exact path="/filter" component={Filter} />
+
+
+
+            {/* Search title - will be similar to post
+              search by user preferences - can be one
+              search by uni - can be one
+              search by dinner/lunch dinner or snack - can be one
+              promotions
+              user preferences filter
+            */}
+
             </Switch>
           </section>
           <BottomNavBar />

@@ -1,5 +1,5 @@
 //Required imports
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
 
@@ -24,44 +24,79 @@ const StyledButton = styled(Button)`
   background-color: ${colorScheme.orange};
 `;
 
+const initialButtonState = {
+  home: false,
+  shoppinglist: false,
+  search: false,
+  calculate: false,
+  profile: false,
+};
+
 const UserNavigationBarContent = () => {
+  const [buttonState, setButtonState] = useState(initialButtonState);
+
   const history = useHistory();
+  // console.log(buttonState);
+
+  const homeColor = buttonState.home === true ? "#ffffff" : "#000000";
+  const shoppingListColor =
+    buttonState.shoppinglist === true ? "#ffffff" : "#000000";
+  const searchListColor = buttonState.search === true ? "#ffffff" : "#000000";
+  const calculatorColor =
+    buttonState.calculate === true ? "#ffffff" : "#000000";
+  const profileColor = buttonState.profile === true ? "#ffffff" : "#000000";
 
   return (
     <>
-      
-        {/* <Link to="/home.html"> */}
-        <StyledButton onClick={() => history.push("/home")}>
-          <AiFillHome style={{ color: "black" }} size={25} />
-        </StyledButton>
-        {/* </Link> */}
-     
-     
-        {/* <Link to="/shoppingList.html"> */}
-        <StyledButton onClick={() => history.push("/shoppingList")}>
-          <FiList style={{ color: "black" }} size={25} />
-        </StyledButton>
-        {/* </Link> */}
-      
-     
-        {/* <Link to="/search.html"> */}
-        <StyledButton onClick={() => history.push("/search")}>
-          <BsSearch style={{ fill: "black" }} size={25} />
-        </StyledButton>
-        {/* </Link> */}
-     
-        {/* <Link to="/budgetCalculator.html"> */}
-        <StyledButton onClick={() => history.push("/budgetCalculator")}>
-          <FaPiggyBank style={{ fill: "black" }} size={25} />
-        </StyledButton>
-        {/* </Link> */}
-      
-        {/* <Link to="/profile.html"> */}
-        <StyledButton onClick={() => history.push("/myprofile")}>
-          <GiCook style={{ fill: "black" }} size={25} />
-        </StyledButton>
-        {/* </Link> */}
-        </>
+      <Link
+        onClick={() => setButtonState({ ...initialButtonState, home: true })}
+        to="/home"
+      >
+        {/* <StyledButton onClick={() => history.push("/home")}> */}
+        <AiFillHome style={{ color: homeColor }} size={25} />
+        {/* </StyledButton> */}
+      </Link>
+
+      <Link
+        onClick={() =>
+          setButtonState({ ...initialButtonState, shoppinglist: true })
+        }
+        to="/shoppingList"
+      >
+        {/* <StyledButton onClick={() => history.push("/shoppingList")}> */}
+        <FiList style={{ color: shoppingListColor }} size={25} />
+        {/* </StyledButton> */}
+      </Link>
+
+      <Link
+        onClick={() => setButtonState({ ...initialButtonState, search: true })}
+        to="/search"
+      >
+        {/* <StyledButton onClick={() => history.push("/search")}> */}
+        <BsSearch style={{ color: searchListColor }} size={30} />
+        {/* </StyledButton> */}
+      </Link>
+
+      <Link
+        onClick={() =>
+          setButtonState({ ...initialButtonState, calculate: true })
+        }
+        to="/budgetCalculator"
+      >
+        {/* <StyledButton onClick={() => history.push("/budgetCalculator")}> */}
+        <FaPiggyBank style={{ color: calculatorColor }} size={25} />
+        {/* </StyledButton> */}
+      </Link>
+
+      <Link
+        onClick={() => setButtonState({ ...initialButtonState, profile: true })}
+        to="/myprofile"
+      >
+        {/* <StyledButton onClick={() => history.push("/myprofile")}> */}
+        <GiCook style={{ color: profileColor }} size={25} />
+        {/* </StyledButton> */}
+      </Link>
+    </>
   );
 };
 

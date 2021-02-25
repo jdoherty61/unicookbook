@@ -5,6 +5,7 @@ import "react-tabs/style/react-tabs.css";
 import styled from "styled-components";
 import colorScheme from "../../styles/mainColorPallete";
 import { Button } from "react-bootstrap";
+import EmptyView from '../layout/EmptyView';
 //should i remove this page??
 
 const StyledTab = styled(Tabs)`
@@ -54,7 +55,7 @@ const Home = (props) => {
               minHeight: 430,
             }}
           >
-            <h2>Any content 2</h2>
+            <EmptyView type={'Saved'}/>
           </TabPanel>
         </StyledTab>
       </div>
@@ -64,7 +65,7 @@ const Home = (props) => {
         size="lg"
         block
       >
-        Block level button
+       View All
       </Button>
       <div style={{ display: "flex", marginTop: 10 }}>
         <Button style={{ height: 115, width: 115 }}>Promotions</Button>

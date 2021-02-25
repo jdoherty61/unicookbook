@@ -119,7 +119,7 @@ export const IngredientsModal = ({ recipe }) => {
             </InputGroup.Prepend>
             <FormControl
               type="number"
-              onChange={(val) => setNewRecipe({...recipeForShoppingList, totalPrice: val.target.value})}
+              onChange={(val) => setNewRecipe({...recipeForShoppingList, totalPrice: Number(val.target.value)})}
               placeholder={"Please input a valid amount"}
               value={recipeForShoppingList.totalPrice}
             />
