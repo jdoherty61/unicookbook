@@ -20,3 +20,27 @@ export const getCurrentUserBudget = async () => {
         //should i return something here? just incase.
     }
 };
+
+export const postNewBudget = async newBudget => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    //hitting the backend api created!
+    try{
+        const res = await axios.post('api/userBudget', newBudget, config);
+
+        return res.data;
+
+    } catch (err) {
+    
+        console.log(err.response.statusText);
+        
+        //should i return something here? just incase.
+    }
+};
+
+

@@ -24,6 +24,7 @@ import PostForm from './components/post/PostForm';
 import UserPreferencesSearchResults from './components/search/UserPreferencesSearchResults';
 import UniSearchResults from './components/search/UniSearchResults';
 import TitleSearch from './components/search/TitleSearch';
+import Promotions from './components/promotions/Promotions';
 import { Filter } from "./components/search/Filter";
 
 //Redux imports
@@ -73,6 +74,8 @@ const App = () => {
               <PrivateRoute exact path="/search/unisearch" component={UniSearchResults} />
               <PrivateRoute exact path="/search/titlesearch/:id" component={TitleSearch} />
               <PrivateRoute exact path="/filter" component={Filter} />
+
+              <PrivateRoute exact path="/promotions" component={Promotions} />
 
 
 

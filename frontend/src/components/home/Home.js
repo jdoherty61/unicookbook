@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useLocation, useHistory } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import styled from "styled-components";
@@ -20,6 +21,7 @@ const StyledTab = styled(Tabs)`
 `;
 
 const Home = (props) => {
+  const history = useHistory();
 
   useEffect(() => {
     // getFiveUserPreferences();
@@ -64,12 +66,13 @@ const Home = (props) => {
         variant="primary"
         size="lg"
         block
+        onClick={() => history.push("/search/userpreferences")}
       >
        View All
       </Button>
       <div style={{ display: "flex", marginTop: 10 }}>
-        <Button style={{ height: 115, width: 115 }}>Promotions</Button>
-        <Button style={{ height: 115, width: 115 }}>User Preferences</Button>
+        <Button onClick={() => history.push("/promotions")} style={{ height: 115, width: 115 }}>Promotions</Button>
+        <Button onClick={() => history.push("/filter")} style={{ height: 115, width: 115 }}>User Preferences</Button>
         <Button style={{ height: 115, width: 115 }}>Liked Recipes</Button>
       </div>
     </>

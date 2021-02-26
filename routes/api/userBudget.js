@@ -16,7 +16,7 @@ const getUserBudgetUrl = "/me";
 // @desc     post userBudget of the user
 // @access   Private
 router.post(postUserBudgetUrl, auth, async (req, res) => {
-  const { studentFinanceIncome, income, spending, duration, totalBudget } = req.body;
+  const { studentFinanceIncome, income, spending, duration, totalBudget, totalIncome, totalSpending } = req.body;
 
   //Build user budget object
   const userBudgetFields = {};
@@ -28,6 +28,8 @@ router.post(postUserBudgetUrl, auth, async (req, res) => {
   if (spending) userBudgetFields.spending = spending;
   if (duration) userBudgetFields.duration = duration;
   if (totalBudget) userBudgetFields.totalBudget = totalBudget;
+  if (totalIncome) userBudgetFields.totalIncome = totalIncome;
+  if (totalSpending) userBudgetFields.totalSpending = totalSpending;
 
   try {
     let userBudget = await UserBudget.findOne({ user: req.user.id });

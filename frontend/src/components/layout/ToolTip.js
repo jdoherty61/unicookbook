@@ -14,7 +14,7 @@ export const ToolTip = () => {
     };
   
     return (
-      <div>
+      <div style={{paddingLeft: 70}}>
         <Button style={{borderRadius: 100}} onClick={handleClick}><i class="fas fa-info"></i></Button>
   
         <Overlay
@@ -27,7 +27,7 @@ export const ToolTip = () => {
           <Popover id="popover-contained">
             <Popover.Title as="h3">Custom Budget</Popover.Title>
             <Popover.Content>
-              <strong>This will override your current budget calculation!</strong> You can set your own budget here without calculations.
+              <strong>This will override your current budget calculation!</strong> You can set your own weekly budget here without calculations.
             </Popover.Content>
           </Popover>
         </Overlay>
