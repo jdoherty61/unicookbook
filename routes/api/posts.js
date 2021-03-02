@@ -84,7 +84,7 @@ router.post(
       ownerUni: user.university,
       user: req.user.id,
       title: req.body.title,
-      image: req.file.path, //MongoDB will store the file name, the folder uploads will store the image.
+      image: req.file.path, //MongoDB will store the file name, the folder 'uploads' in this parent directory will store the image.
       totalPrice: req.body.totalPrice,
       instructions: req.body.instructions,
       ingredients: req.body.ingredients,
