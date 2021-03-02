@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-// import axios from "axios";
-// import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
 import { Link, Redirect } from "react-router-dom";
-import logo from "../../images/logo.png";
 import { IoIosArrowBack } from "react-icons/io";
 
-// import { Button } from "react-bootstrap";
 import colorScheme from "../../styles/mainColorPallete";
+import logo from "../../images/logo.png";
+// import "react-dropdown/style.css";
 
 //Connecting to redux
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// Used this course for this file to connect to redux, which helped me with the authentication flow and allowed for alert messages if login was incorrect 
+// -------------------------------------------------------------------------------------------------------------
 
 //make an innitial state
 const initialState = {
@@ -89,6 +92,7 @@ login.PropTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
+//Use the references course for this in particular.
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });

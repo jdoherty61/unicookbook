@@ -20,7 +20,7 @@ export const ToolTip = () => {
         <Overlay
           show={show}
           target={target}
-          placement="bottom"
+          placement="left"
           // container={ref.current}
           containerPadding={20}
         >
