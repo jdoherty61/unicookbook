@@ -9,15 +9,20 @@ import {
     LOGOUT
 } from '../actions/constants';
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// Allows ability for secure authentication of signed in user using local storage and jwstoken. 
+// -------------------------------------------------------------------------------------------------------------
+
 const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,  //Set to null be default, will be set to true with registered success,
     loading: true,
     user: null
 };
+
 //be able to register user
-
-
 export default function(state = initialState, action) {
     const {type, payload} = action; 
 
@@ -53,5 +58,5 @@ export default function(state = initialState, action) {
         default: 
             return state;
     }
-}
+};
 

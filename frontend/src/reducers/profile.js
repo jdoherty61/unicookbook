@@ -4,12 +4,15 @@ import { GET_PROFILE, PROFILE_ERROR } from "../actions/constants";
 // reducers/profile
 // actions/constants 
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
 
 const initialState = {
   profile: null,
-  // profiles: [], // might not need this, will list out of the students and I dont need that
   loading: true,
-  error: {},
+  error: {}
 };
 
 export default function (state = initialState, action) {
