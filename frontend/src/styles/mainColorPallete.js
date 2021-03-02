@@ -17,6 +17,9 @@ const colorScheme = {
     darkOrange: '#FC7B11',
     basicWhite: '#FFFFFF',
     successfulGreen: '#4BB543'
+
+    //new background colour? #FFF2E6
+    //#F6EDE6
 } ;
 
 export default colorScheme;

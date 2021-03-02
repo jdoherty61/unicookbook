@@ -10,6 +10,12 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const UserPreferences = require("../../models/UserPreferences");
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// I used this tutorial for the basics of API development to implement my own functionality for features such as this user preference.
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 //const URLS
 const postUserPreferences = "/";
 const getUserPreferences = "/me"

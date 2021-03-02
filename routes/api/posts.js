@@ -8,6 +8,15 @@ const auth = require("../../middleware/auth");
 //Using package multer to store incoming files - https://www.youtube.com/watch?v=srPXMt1Q0nY&list=LL&index=1&ab_channel=Academind
 const multer = require('multer');
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+
+// **** Youtube tutorial that enabled me to implement form-data POST to provide upload image ability *****
+// https://www.youtube.com/watch?v=srPXMt1Q0nY&list=LL&index=1&ab_channel=Academind
+
+// -------------------------------------------------------------------------------------------------------------
+
 //storage 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {   //cb == callback
@@ -19,6 +28,7 @@ const storage = multer.diskStorage({
   }
 });
 
+//Only allowing png, jpeg, jpg files to be uploaded temporarily. Could change this in the future to allow multi-media such as videos etc.
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png'){
     cb(null, true)
@@ -36,12 +46,12 @@ const upload = multer({
   fileFilter: fileFilter });
 
 
-//Pulling in the models which will be used in the posts APIs
+//Pulling in the models which will be used in the posts APIs - Mongoose Validation (Stated in disseration, seen in System Architecture Model of Chapter 2)
 const Post = require("../../models/Post");
 const User = require("../../models/User");
-const UserPreferences = require("../../models/UserPreferences");
+// const UserPreferences = require("../../models/UserPreferences");
 
-//URLS 
+//URLS consts
 const postUrl = "/";
 const postByIdUrl = "/:id";
 const postLikeUrl = "/like/:id";
@@ -50,10 +60,10 @@ const commentOnPostUrl = "/comment/:id";
 const deleteCommentPostUrl = "/comment/:id/:comment_id";
 // const userPref = "/userPrefSearchFilter";
 
-
-
 //#############################TODO LIST for next iteration ######################################
-//Add api to link to other students profile by their id. 
+//Add api to link to other students profile by their id - so users can see each other profiles. 
+//Conenct the like, unlike of posts to the front end with the currently created APIs. 
+//Connect comment APIs to front end for post.
 
 // @route    POST api/posts
 // @desc     Create a post
@@ -65,9 +75,7 @@ router.post(
   async (req, res) => {
   try {
 
-    console.log(req.file);
-
-
+    // console.log(req.file); //console logging for white box testing purposes. 
     const user = await User.findById(req.user.id).select("-password");
 
     const newPost = new Post({
@@ -76,9 +84,8 @@ router.post(
       ownerUni: user.university,
       user: req.user.id,
       title: req.body.title,
-      //needs to be changed when implementing front end etc - YOUTUBE VIDEO of this
-      image: req.file.path,
-      totalPrice: req.body.totalPrice, //total price should be calculated in the front end as the ingredeints price are calculated and added to payload
+      image: req.file.path, //MongoDB will store the file name, the folder uploads will store the image.
+      totalPrice: req.body.totalPrice,
       instructions: req.body.instructions,
       ingredients: req.body.ingredients,
       effortTime: req.body.effortTime,
@@ -109,7 +116,6 @@ router.get(postUrl, auth, async (req, res) => {
   }
 });
 
-
 // @route    GET api/posts/me
 // @desc     GET users posts - for profile page
 // @access   Private - users have to be logged in to see the posts.
@@ -124,8 +130,6 @@ router.get('/me', auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-
 
 
 // @route    GET api/posts/:id
@@ -148,7 +152,7 @@ router.get(
       console.error(err.message);
 
       if (err.kind === "ObjectId") {
-        //Meaning its not a formatted object id ... theres not going to be a post
+        //Meaning its not a formatted object id ... there's not going to be a post.
         return res.status(404).json({ msg: "Post not found" });
       }
 
@@ -172,7 +176,7 @@ router.delete(
         return res.status(404).json({ msg: "Post not found" });
       }
 
-      // check user that belongs to that post - dont let users who arent of that post delete it
+      // check user that belongs to that post - don't let users who arent of that post delete it
       if (post.user.toString() !== req.user.id) {
         return res.statusMessage(401).json({ msg: "User Not Authorised" }); //not authorised
       }
@@ -233,7 +237,6 @@ router.put(
     try {
       
       //todo: could i put this in the above? prevent two apis and just have one?
-
       const post = await Post.findById(req.params.id);
 
       // Check if the post has already been liked by the user - prevents infinites

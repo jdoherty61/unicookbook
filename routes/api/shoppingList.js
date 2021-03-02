@@ -9,12 +9,18 @@ const { json } = require("express");
 const ShoppingList = require("../../models/ShoppingList");
 const User = require("../../models/User");
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// I used this tutorial for the basics of API development to implement my own functionality for features such as this shopping list.
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 //URL consts
 const myShoppingListUrl = "/me";
 const modifyShoppingListUrl = "/list";
 const clearAllShoppingListUrl = "/list/:shoppinglist_id";
 
-// TODO: Refactor to make it easier to delete the recipe created. For now though I could use post to repost the shopping list.??
+// TODO: Refactor to make it easier to delete the recipe created
 
 // @route   GET api/shoppingList/me
 // @desc   get current users shopping list
@@ -75,7 +81,7 @@ router.put(
       // If there is no current shopping list
       if (!shoppingList) {
         newShoppingList = new ShoppingList({
-          user: req.user.id,
+          user: req.user.id
         });
 
         return await newShoppingList.save();
@@ -103,11 +109,11 @@ router.delete(clearAllShoppingListUrl, auth, async (req, res) => {
     const shoppingList = await ShoppingList.findOne({ user: req.user.id });
 
     //Get the remove index
-    const removeIndex = shoppingList.list
-      .map((item) => item.id)
-      .indexOf(req.params.shoppinglist_id);
+    // const removeIndex = shoppingList.list
+    //   .map((item) => item.id)
+    //   .indexOf(req.params.shoppinglist_id);
 
-    shoppingList.list.splice(removeIndex, 1);
+    shoppingList.list.splice(shoppingList.list, shoppingList.list.length);  //CHANGED! might cause errors with clear.
 
     await shoppingList.save();
 

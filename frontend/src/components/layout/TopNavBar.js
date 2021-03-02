@@ -197,6 +197,7 @@ const NavContent = () => {
     case "/searchresults":
     case "/search/userpreferences":
     case "/search/unisearch":
+    case "/search/titlesearch/title":
     case "/search/titlesearch": //doesn't work due to the param being passed causing the URL to change - could use if statematement or return nothing and then render the top nav INSIDE the search results - other way is to change the param being passed in and just use state in of the route
       return <SearchResultsNavBarContent />;
     case "/filter":

@@ -12,11 +12,17 @@ const UserBudget = require("../../models/UserBudget");
 const postUserBudgetUrl = "/";
 const getUserBudgetUrl = "/me";
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
+
 // @route    POST api/userBudget
 // @desc     post userBudget of the user
 // @access   Private
 router.post(postUserBudgetUrl, auth, async (req, res) => {
-  const { studentFinanceIncome, income, spending, duration, totalBudget, totalIncome, totalSpending } = req.body;
+  const { studentFinanceIncome, income, spending, duration, totalBudget, totalIncome, totalSpending, isCustom } = req.body;
 
   //Build user budget object
   const userBudgetFields = {};
@@ -30,6 +36,7 @@ router.post(postUserBudgetUrl, auth, async (req, res) => {
   if (totalBudget) userBudgetFields.totalBudget = totalBudget;
   if (totalIncome) userBudgetFields.totalIncome = totalIncome;
   if (totalSpending) userBudgetFields.totalSpending = totalSpending;
+  if (isCustom) userBudgetFields.isCustom = isCustom;
 
   try {
     let userBudget = await UserBudget.findOne({ user: req.user.id });

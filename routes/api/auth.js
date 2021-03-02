@@ -6,27 +6,35 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator/check");
 
+
 const User = require("../../models/User");
 
-const authUrl = "/"; // Url in constant - remove duplication as both calls use it below.
+//URL consts 
+const authUrl = "/"; 
 
-// This file is dedicated to developing routes to APIs associated with authentiation using the above packages.
+// This file is dedicated to developing routes to APIs associated with authentiation using the above node packages.
 
 // Response meanings
 // 500 = Internal server error
 // 400 = Bad request
 
-//basic layout of the API calls
+// - basic layout of the API calls - 
 // in an asynchronous function to allow for promises
 // try and catch block to catch errors
 // return a response
+
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 
 // @route   GET api/auth
 // @desc    get the user by token
 // @access  public
 router.get(authUrl, auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id).select("-password"); //removing password from returned user. Security purposes and just not needed for purpose of system.
 
     res.json(user);
   } catch (err) {
@@ -41,7 +49,7 @@ router.get(authUrl, auth, async (req, res) => {
 router.post(
   authUrl,
   [
-    check("email", "Please include your university email").isEmail(),
+    check("email", "Please include your university email").isEmail(),  //Validation
     check("password", "Password is required").exists(),
   ],
   async (req, res) => {
@@ -72,14 +80,13 @@ router.post(
       }
 
       //return the jsonwebtoken - sending this back once the user is registered, so they can use this token to access protected routes.
-
       const payload = {
         user: {
           id: user.id,
         },
       };
 
-      //TODO: Does the app need to have an expiresIn??? or should I allow it to keep open since it is on their mobile which is likely password protected?
+      //TODO: Does the app need to have an expiresIn??? or should I allow it to keep open since it is on their mobile which is likely password protected? 
       jwt.sign(
         payload,
         config.get("jwtSecret"),

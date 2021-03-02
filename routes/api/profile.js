@@ -18,6 +18,11 @@ const myProfileUrl = "/me";
 const profileUrl = "/";
 const userProfileUrl = "/user/:user_id";
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 // @route   GET api/profile/me
 // @desc    get current users profile
 // @access  private
@@ -103,21 +108,6 @@ router.post(
     }
   }
 );
-
-// //Todo: Might not need this.
-// // @route    GET api/profile
-// // @desc     get all profiles
-// // @access   Pubilc
-// router.get("/", async (req, res) => {
-//   try {
-//     //Get all the profiles alongside the name and avatar of the user.
-//     const profiles = await Profile.find().populate("user", ["name", "avatar"]);
-//     res.json(profiles);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
 
 // @route    GET api/profile/user/:user_id
 // @desc     get  profile by user id
