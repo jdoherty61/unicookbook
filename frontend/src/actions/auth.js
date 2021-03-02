@@ -3,6 +3,11 @@ import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT} from "./constants";
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 //Load user
 export const loadUser = () => async dispatch => {
     if(localStorage.token) {
