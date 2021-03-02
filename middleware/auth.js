@@ -1,5 +1,10 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 //middleware is a function that has access to the request and reponse,
 //with the 'next' being a callback ran once function executed so that it moves on gracefully.
 
@@ -10,6 +15,8 @@ const config = require("config");
 // if there is a token and it is invalid, it will run the catch
 // If there is, it will decode it with JWT verfiy which then set the decoded object to the req.user,
 // (AKA the user in that decoded token). -> to get privSated routes eg profile.
+
+//BOILER PLATE CODE
 
 module.exports = function (req, res, next) {
   //Get token from header
