@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import alert from './alert';
 import auth from './auth';
 import profile from './profile';
-import post from './post';
+// import post from './post';
 
 // ----------------------------------------------- REFERENCE(S) -----------------------------------------------
 // ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
