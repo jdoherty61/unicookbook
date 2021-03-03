@@ -4,7 +4,6 @@ import { IoIosArrowBack } from "react-icons/io";
 
 import colorScheme from "../../styles/mainColorPallete";
 import logo from "../../images/logo.png";
-// import "react-dropdown/style.css";
 
 //Connecting to redux
 import { connect } from "react-redux";

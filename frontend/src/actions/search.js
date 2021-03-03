@@ -41,3 +41,17 @@ export const getRecipesBasedOnTitle = async (title) => {
     //should i return something here? just incase.
   }
 };
+
+//Getting recipes based on user's preferences! (Five of them for home page)
+export const getRecipesForHomePage = async () => {
+  //hitting the backend api created!
+  try {
+    const res = await axios.get("/api/search/fiveUserPreferences");
+
+    return res.data;
+  } catch (err) {
+    console.log(err.response.statusText);
+
+    //should i return something here? just incase.
+  }
+};

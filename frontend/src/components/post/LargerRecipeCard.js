@@ -5,19 +5,15 @@ import colorScheme from "../../styles/mainColorPallete";
 import {
   Card,
   CardBody,
-  CardFooter,
-  CardHeader,
   CardImageHeader,
-  CardText,
-  CardTitle,
+  CardText
 } from "styled-card-component";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
 
 const StyledCard = styled(Card)`
-  height: 160px;
-  width: 115px;
-  background-color: ${colorScheme.pale};
+  height: 325px;
+  width: 220px;
   margin: 2px;
   box-shadow: 0px 1px 9px 1px ${colorScheme.shadow};
   border-radius: 10px;
@@ -25,15 +21,36 @@ const StyledCard = styled(Card)`
 
 const StyledCardText = styled(CardText)`
   white-space: nowrap;
-  font-size: 15px;
+  font-size: 20px;
   text-overflow: ellipsis;
   overflow-y: hidden;
   margin-bottom: 0;
   overflow: hidden;
 `;
 
+const StyledCardPrice = styled(CardText)`
+  white-space: nowrap;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+  margin-bottom: 0;
+  overflow: hidden;
+  color: ${colorScheme.orange};
+`;
+
+const StyledUniText = styled(CardText)`
+white-space: nowrap;
+font-size: 15px;
+text-overflow: ellipsis;
+overflow-y: hidden;
+margin-bottom: 0;
+overflow: hidden;
+width: 140px
+`; 
+
 const StyledCardBody = styled(CardBody)`
   padding: 5px;
+  padding-top: 0px;
   color: ${colorScheme.blue};
   font-weight: bold;
   
@@ -41,8 +58,9 @@ const StyledCardBody = styled(CardBody)`
 
 const StyledImage = styled(CardImageHeader)`
 width: 95%;
-height: 100px;
+height: 200px;
 margin: 5px;
+margin-top: 0px;
 margin-bottom: 0px;
 border-radius: 5px;
 align-self: center;
@@ -52,21 +70,46 @@ export const LargerRecipeCard = ({recipe}) => {
     return (
         <Link to={`/posts/${recipe._id}`}>
         <StyledCard key={recipe.id}>
+        <div style={{ display: "flex" }}>
+        
+            <img
+              src={recipe.ownerAvatar} //refactored to allow users to edit their profile pics
+              alt="new"
+              style={{
+                height: 40,
+                width: 40,
+                border: `2px solid ${colorScheme.blue}`,
+                borderRadius: 100,
+                margin: 5,
+                alignSelf: "center",
+              }}
+            />
+            <div>
+            <CardText style={{ marginTop: 5, marginBottom: 0, fontSize: 15, overflow: 'hidden' }}>
+              {recipe.ownerName}
+            </CardText>
+            <StyledUniText
+              style={{ marginBottom: 0, fontSize: 12 }}
+              className="mb-2 text-muted"
+            >
+              {recipe.ownerUni}
+            </StyledUniText>
+            </div>
+          
+              </div>
           <StyledImage src={`../../../../${recipe.image}`} />
           <StyledCardBody>
             <StyledCardText>
               {recipe.title}
               </StyledCardText>
-              <StyledCardText>
-              
+              <StyledCardPrice>
               £{recipe.totalPrice}
-              <AiOutlineClockCircle style={{ fill: colorScheme.blue, paddingLeft: 10, paddingTop: 10}} size={25} />{recipe.effortTime}
-              </StyledCardText>
-  
-            {/* <CardFooter>
-              {recipe.totolPrice}
-              {recipe.effortTime}
-            </CardFooter> */}
+              
+              <span style={{marginLeft: 100, fontSize: 15, color: 'grey', fontWeight: 'normal'}}>
+              {recipe.effortTime} mins
+              <AiOutlineClockCircle style={{ fill: colorScheme.blue, paddingBottom: 4}} size={25} />
+              </span>
+              </StyledCardPrice>
           </StyledCardBody>
         </StyledCard>
         </Link>

@@ -25,6 +25,7 @@ import UserPreferencesSearchResults from './components/search/UserPreferencesSea
 import UniSearchResults from './components/search/UniSearchResults';
 import TitleSearch from './components/search/TitleSearch';
 import Promotions from './components/promotions/Promotions';
+import Advice from './components/advice/Advice';
 import { Filter } from "./components/search/Filter";
 
 //Redux imports
@@ -76,6 +77,7 @@ const App = () => {
               <PrivateRoute exact path="/filter" component={Filter} />
 
               <PrivateRoute exact path="/promotions" component={Promotions} />
+              <PrivateRoute exact path="/advice" component={Advice} />
 
 
 

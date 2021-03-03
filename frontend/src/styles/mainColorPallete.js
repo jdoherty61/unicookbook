@@ -16,7 +16,8 @@ const colorScheme = {
     grey: '#a7a7a7',
     darkOrange: '#FC7B11',
     basicWhite: '#FFFFFF',
-    successfulGreen: '#4BB543'
+    successfulGreen: '#4BB543',
+    warningColour: '#ff6700'
 
     //new background colour? #FFF2E6
     //#F6EDE6
