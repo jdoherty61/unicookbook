@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { FlatList } from "react-native-web";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-
+import { Spinner as Spinny } from "react-bootstrap";
 //redux
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
@@ -38,7 +38,12 @@ const ProfileHeader = ({ user, profile }) => {
     //Degree
     //Name
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ 
+        // display: "flex",
+        justifyContent: 'center',
+        textAlign: 'center'
+        
+        }}>
         <img
           src={user.avatar} //refactored to allow users to edit their profile pics
           alt="new"
@@ -48,14 +53,14 @@ const ProfileHeader = ({ user, profile }) => {
             borderRadius: 100,
             borderColor: "grey",
             borderWidth: 2,
-            border: "1px solid #33e",
+            border: `2px solid ${colorScheme.blue}`,
             margin: 5,
             alignSelf: "center",
           }}
         />
         <div>
           <div>
-            <h2>{user.name}</h2>
+            <h3>{user.name}</h3>
           </div>
           <div>{user.degree}</div>
           <div>{user.university}</div>
@@ -75,12 +80,15 @@ const Profile = ({
   profile: { profile, loading },
 }) => {
   const [userRecipes, setUserRecipes] = useState([]);
+  const [isLoadingRecipes, setIsLoadingRecipes] = useState(false);
 
   useEffect(() => {
     getCurrentProfile();
+    setIsLoadingRecipes(true);
     getCurrentUserPosts().then((recipesArray) => {
       console.log(recipesArray);
       setUserRecipes(recipesArray);
+      setIsLoadingRecipes(false)
     });
   }, []);
 
@@ -102,11 +110,13 @@ const Profile = ({
           style={{
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
-            minHeight: 30,
-            minHeight: 515,
+            // minHeight: 455
+            height: 455,
+            overflow: 'scroll'
           }}
         >
-          {userRecipes.length === 0 ? (
+          {isLoadingRecipes ? <Spinny animation="border" style={{color: colorScheme.blue}}/> :
+          userRecipes.length === 0 ? (
             <EmptyView type={"Created"} />
           ) : (
             <FlatList
@@ -122,8 +132,9 @@ const Profile = ({
           style={{
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
-            minHeight: 30,
-            minHeight: 515,
+            // minHeight: 455
+            height: 455,
+            overflow: 'scroll'
           }}
         >
           {/* Needs developed - empty view for now */}
@@ -134,8 +145,9 @@ const Profile = ({
           style={{
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
-            minHeight: 30,
-            minHeight: 515,
+            // minHeight: 455
+            height: 455,
+            overflow: 'scroll'
           }}
         >
           {/* Needs developed - empty view for now */}
