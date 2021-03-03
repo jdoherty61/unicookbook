@@ -105,7 +105,7 @@ export const LargerRecipeCard = ({recipe}) => {
               <StyledCardPrice>
               £{recipe.totalPrice}
               
-              <span style={{marginLeft: 100, fontSize: 15, color: 'grey', fontWeight: 'normal'}}>
+              <span style={{position: 'absolute', right: 0, padding: 5, fontSize: 15, color: 'grey', fontWeight: 'normal'}}>
               {recipe.effortTime} mins
               <AiOutlineClockCircle style={{ fill: colorScheme.blue, paddingBottom: 4}} size={25} />
               </span>

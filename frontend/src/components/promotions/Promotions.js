@@ -1,11 +1,6 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import { Button, Card } from "react-bootstrap";
-import styled from "styled-components";
-import { AiOutlineClockCircle } from "react-icons/ai";
-import { GiCook } from "react-icons/gi";
-import { FiList } from "react-icons/fi";
-import colorScheme from "../../styles/mainColorPallete";
+import React from 'react'; //https://reactjs.org/
+import Container from 'react-bootstrap/Container'; //https://react-bootstrap.github.io/components
+import LargerRecipeCard from "../post/LargerRecipeCard";
 
 //https://www.google.com/search?q=tescos+icon&rlz=1C1CHBF_en-GBGB923GB923&sxsrf=ALeKk03KpCk8FAyYyNmSHWYlb3bzpjnn8Q:1614289848764&tbm=isch&source=iu&ictx=1&fir=KV-2IZgTGvIcnM%252C4ZVe1P0ZVq8V9M%252C_&vet=1&usg=AI4_-kQPEOvuD44bRRtWFzz6mkeajg1_QQ&sa=X&ved=2ahUKEwjk1f-ngobvAhXTtHEKHSAlDA0Q9QF6BAgNEAE&biw=1064&bih=1061#imgrc=OAaQEcP3DmRkhM
 //https://www.google.com/search?q=sainsburyspng&tbm=isch&ved=2ahUKEwiE6bOLg4bvAhVG0uAKHTzuDFYQ2-cCegQIABAA&oq=sainsburyspng&gs_lcp=CgNpbWcQAzIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjoECAAQQzoCCABQsCRYgDJg2DNoAXAAeACAAUWIAcQFkgECMTGYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=iRw4YMSADsakgwe83LOwBQ&bih=1061&biw=1064&rlz=1C1CHBF_en-GBGB923GB923#imgrc=bwwEeDhuGbFLqM
@@ -17,73 +12,46 @@ import colorScheme from "../../styles/mainColorPallete";
 
 //All of the above images were saved in main promotion directory folder. 
 import tesco from './tescos.png';
-// import spar from './spar.png';
-// import sainsburys from './sainsburys';
+import spar from './spar.png';
+import sainsburys from './sainsburys.png';
 
 import meal from './tescosmeal.jpg';
+import meal2 from './meal2.jpg';
+import meal3 from './meal3.jpg';
 
-const PromotionCard = () => {
-    return (
-        <Card>
-        <div style={{ display: "flex" }}>
-          <div>
-            <img
-              src={tesco} 
-              alt="new"
-              style={{
-                height: 40,
-                width: 40,
-                border: "1px solid #33e",
-                borderRadius: 100,
-                margin: 5,
-                alignSelf: "center",
-              }}
-            />
-          </div>
-          <div>
-            <Card.Title style={{ marginTop: 5, marginBottom: 5, fontSize: 20 }}>
-              tescos
-            </Card.Title>
-            <Card.Subtitle
-              style={{ marginBottom: 0, fontSize: 15 }}
-              className="mb-2 text-muted"
-            >
-              Tesco's Belfast Area
-            </Card.Subtitle>
-          </div>
-        </div>
-        <Card.Img style={{
-          height: 300,
-          width: 325,
-          alignSelf: 'center'
-        }} variant="top" src={meal} />
-        <Card.Body style={{ padding: 10 }}>
-          <Card.Title style={{ display: "flex" }}>
-            <div>Chicken Dish</div>
-            <div style={{ right: 10, position: "absolute", color: "red" }}>
-              £5.50
-            </div>
-          </Card.Title>
-          <Card.Text>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div>
-                <AiOutlineClockCircle
-                  style={{ fill: colorScheme.blue }}
-                  size={30}
-                />
-                5 mins
-              </div>
-              <div>
-                <GiCook style={{ fill: "black" }} size={30} />
-               easy
-              </div>
-              <div>meal: Dinner</div>
-            </div>
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    );
+
+const recipe1 = {
+effortTime: 5,
+image: `${meal}`,
+meal: "DINNER",
+ownerAvatar: `${tesco}`,
+ownerName: "Tesco",
+ownerUni: "Belfast Area",
+title: "Chicken Dish",
+totalPrice: 5.55
 };
+
+const recipe2 = {
+  effortTime: 5,
+  image: `${meal2}`,
+  meal: "DINNER",
+  ownerAvatar: `${spar}`,
+  ownerName: "Spar",
+  ownerUni: "Belfast Area",
+  title: "Tomato and Basil Dish",
+  totalPrice: 5.55
+  };
+  
+const recipe3 = {
+  effortTime: 5,
+  image: `${meal3}`,
+  meal: "DINNER",
+  ownerAvatar: `${sainsburys}`,
+  ownerName: "Sainsburys",
+  ownerUni: "Belfast Area",
+  title: "Rasp and Almond Dish",
+  totalPrice: 5.55
+  };
 
 export const Promotions = () => {
     return (
@@ -93,7 +61,13 @@ export const Promotions = () => {
             Three picks of the week
           </h2>
         </div>
-        <PromotionCard/>
+        <div style={{display: 'flex', overflow: 'scroll'}}>
+        <LargerRecipeCard recipe={recipe1}/>
+        <LargerRecipeCard recipe={recipe2}/>
+        <LargerRecipeCard recipe={recipe3}/>
+        </div>
+
+
         </Container>
     );
 };
