@@ -40,8 +40,8 @@ export const IngredientsModal = ({ recipe }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        <FiList style={{ color: "black" }} size={25} />
+      <Button variant="" onClick={handleShow}>
+        <FiList style={{ color: "grey" }} size={25} />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
