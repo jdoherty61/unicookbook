@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react"; //https://reactjs.org/
+import PropTypes from "prop-types"; //https://reactjs.org/ 
 
-import { FlatList } from "react-native-web";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { Spinner as Spinny } from "react-bootstrap";
+import { FlatList } from "react-native-web"; //https://reactnative.dev/docs/flatlist
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs"; //https://www.npmjs.com/package/react-tabs
+import { Spinner as Spinny } from "react-bootstrap"; //https://react-bootstrap.github.io/components/spinners/
+
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// -------------------------------------------------------------------------------------------------------------
+
 //redux
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
