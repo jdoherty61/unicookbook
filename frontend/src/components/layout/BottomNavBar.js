@@ -5,8 +5,6 @@ import { Button, Navbar, Nav } from "react-bootstrap";
 
 //connecting to redux
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { logout } from "../../actions/auth";
 
 //Icons imported
 import { BsSearch } from "react-icons/bs";
@@ -103,9 +101,10 @@ const UserNavigationBarContent = () => {
 
 const FooterForAuthPages = () => {
   return (
-    <ul>
+    // Styling needs refactored, this would not be cross platform.
+    <ul style={{margin: '35%'}}> 
       {/* IN ONLY SIGN IN, AUTH PAGES */}
-      <li style={{ fontWeight: "bold" }}>2020Vision{"\u00A9"}</li>
+      <li style={{ fontWeight: "bold"}}>2020Vision{"\u00A9"}</li>
     </ul>
   );
 };

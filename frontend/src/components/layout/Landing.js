@@ -8,6 +8,12 @@ import colorScheme from '../../styles/mainColorPallete';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// Used this course for this file to connect to redux, which helped me with the authentication flow and allowed for alert messages if login was incorrect 
+// -------------------------------------------------------------------------------------------------------------
+
 const LandingPageSection = styled.section`
   background-color: ${colorScheme.orange};
   position: absolute;
@@ -17,14 +23,12 @@ const LandingPageSection = styled.section`
   height: 100%;
 `;
 
-
 export const Landing = ({ isAuthenticated }) => {
 
   //if the user is logged in, they should be redirected to their home page
   if(isAuthenticated){
     return <Redirect to='/home'/>
   }
-
 
   return (
     <LandingPageSection>
@@ -49,6 +53,7 @@ Landing.propTypes = {
   isAuthenticated: PropTypes.bool
 };
 
+//course helped me with this particular area
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });

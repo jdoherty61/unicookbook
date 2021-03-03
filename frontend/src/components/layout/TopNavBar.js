@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import colorScheme from "../../styles/mainColorPallete";
-import { BsList, BsSearch } from "react-icons/bs";
+import { BsList } from "react-icons/bs";
 import { BiExport, BiFilterAlt } from "react-icons/bi";
 import { GrAdd } from "react-icons/gr";
 import { IoIosArrowBack } from "react-icons/io";
@@ -227,6 +227,12 @@ TopNavBar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
+
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// Used this course for this file to connect to redux, which helped me with the authentication flow and allowed for alert messages if login was incorrect 
+// -------------------------------------------------------------------------------------------------------------
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

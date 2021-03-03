@@ -1,6 +1,6 @@
 import React from "react";
-import spinner from "./spinner.gif"; //was going to use gif instead.
 import { Spinner } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
+// import spinner from "./spinner.gif"; //was going to use gif instead. //http://superstorefinder.net/support/knowledgebase/customizing-loading-icons/
 import colorScheme from "../../styles/mainColorPallete";
 
 const CustomSpinner = () => {
