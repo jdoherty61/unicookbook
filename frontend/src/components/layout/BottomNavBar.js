@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 //Icons imported
-import { BsList, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { FiList } from "react-icons/fi";
 import { FaPiggyBank } from "react-icons/fa";
@@ -17,12 +17,12 @@ import { GiCook } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 
 //Styled imported
-import styled from "styled-components";
-import colorScheme from "../../styles/mainColorPallete";
+// import styled from "styled-components";
+// import colorScheme from "../../styles/mainColorPallete";
 
-const StyledButton = styled(Button)`
-  background-color: ${colorScheme.orange};
-`;
+// const StyledButton = styled(Button)`
+//   background-color: ${colorScheme.orange};
+// `;
 
 const initialButtonState = {
   home: false,
@@ -38,6 +38,7 @@ const UserNavigationBarContent = () => {
   const history = useHistory();
   // console.log(buttonState);
 
+  // Changing the button based on the click - this is temporary as it is controlled via the component, should use redux or a useContext() to keep the state consistent
   const homeColor = buttonState.home === true ? "#ffffff" : "#000000";
   const shoppingListColor =
     buttonState.shoppinglist === true ? "#ffffff" : "#000000";
@@ -113,15 +114,21 @@ export const BottomNavBar = ({ auth: { isAuthenticated, loading } }) => {
   return (
     <>
       <nav className="bottomNavbar">
-        {!loading && isAuthenticated ? (
+        {!loading && isAuthenticated ? 
           <UserNavigationBarContent />
-        ) : (
+         : 
           <FooterForAuthPages />
-        )}
+        }
       </nav>
     </>
   );
 };
+
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// Used this course for this file to connect to redux, which helped me with the authentication flow and allowed for alert messages if login was incorrect
+// -------------------------------------------------------------------------------------------------------------
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
