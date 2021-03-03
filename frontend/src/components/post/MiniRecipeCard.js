@@ -1,23 +1,20 @@
-import React from 'react'
-import styled from "styled-components";
+import React from 'react';
 import { Link } from "react-router-dom";
-import colorScheme from "../../styles/mainColorPallete";
+import styled from "styled-components"; //https://styled-components.com/
 import {
   Card,
   CardBody,
-  CardFooter,
-  CardHeader,
   CardImageHeader,
-  CardText,
-  CardTitle,
-} from "styled-card-component";
+  CardText
+} from "styled-card-component"; //https://www.npmjs.com/package/styled-card-component
+
 import { AiOutlineClockCircle } from "react-icons/ai";
+import colorScheme from "../../styles/mainColorPallete";
 
-
+//  background-color: ${colorScheme.pale};
 const StyledCard = styled(Card)`
   height: 160px;
   width: 115px;
-  background-color: ${colorScheme.pale};
   margin: 2px;
   box-shadow: 0px 1px 9px 1px ${colorScheme.shadow};
   border-radius: 10px;
@@ -48,6 +45,16 @@ border-radius: 5px;
 align-self: center;
 `;
 
+const StyledCardPrice = styled(CardText)`
+  white-space: nowrap;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+  margin-bottom: 0;
+  overflow: hidden;
+  color: ${colorScheme.orange};
+`;
+
 export const MiniRecipeCard = ({recipe}) => {
     return (
         <Link to={`/posts/${recipe._id}`}>
@@ -57,16 +64,14 @@ export const MiniRecipeCard = ({recipe}) => {
             <StyledCardText>
               {recipe.title}
               </StyledCardText>
-              <StyledCardText>
-              
+              <StyledCardPrice>
               £{recipe.totalPrice}
-              <AiOutlineClockCircle style={{ fill: colorScheme.blue, paddingLeft: 10, paddingTop: 10}} size={25} />{recipe.effortTime}
-              </StyledCardText>
-  
-            {/* <CardFooter>
-              {recipe.totolPrice}
-              {recipe.effortTime}
-            </CardFooter> */}
+              
+              <span style={{ position: 'absolute', right: 0, fontSize: 12, color: 'grey', fontWeight: 'normal', paddingTop: 3}}>
+              {recipe.effortTime} mins
+              <AiOutlineClockCircle style={{ fill: colorScheme.blue, paddingBottom: 4}} size={20} />
+              </span>
+              </StyledCardPrice>
           </StyledCardBody>
         </StyledCard>
         </Link>
