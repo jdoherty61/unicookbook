@@ -1,0 +1,30 @@
+Based on the nature of react having re-usable components throughout the application, I have dedicated this file to reference the packages particularly
+used throughout the development of this application.
+
+Packages used can be seen in both my package.json files (One within Frontend folder, and one within parent folder).
+
+ ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS *****
+ Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+ Used this course for connect and learn redux, which helped me with the authentication flow and allowed for alert messages if login was incorrect.
+ Provided me with a boiler plate structure to use in order to develop my cooking application. 
+
+ //References
+ https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+
+ https://reactjs.org/ 
+    
+    HOOKS USED THROUGHOUT.
+    useEffect - https://reactjs.org/docs/hooks-effect.html
+    useState - https://reactjs.org/docs/hooks-state.html
+    
+ https://react-bootstrap.github.io/components - Re-usable components used throughout development. Used by importing in file. 
+
+https://nodejs.org/en/   - npm - allowed for development of the package.json etc.
+
+https://expressjs.com/ - express 
+https://mongoosejs.com/ - used for validation 
+
+
+
+
+
