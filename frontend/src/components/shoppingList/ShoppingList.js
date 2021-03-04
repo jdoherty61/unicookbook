@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { Card, Button, Accordion, InputGroup, FormControl } from "react-bootstrap"; //https://react-bootstrap.github.io/components/alerts/
 
+import EmptyView from '../layout/EmptyView';
+import Spinner from "../layout/CustomSpinner";
+// import Seperator from "../layout/Separator";
+// import { BsTrash } from "react-icons/bs";
+
+import colorScheme from "../../styles/mainColorPallete";
+
+import { getCurrentUserBudget } from "../../actions/userBudget";
 import {
   getCurrentUserShoppingList,
   clearUserShoppingList,
 } from "../../actions/shoppingList";
-import { getCurrentUserBudget } from "../../actions/userBudget";
-import Spinner from "../layout/CustomSpinner";
-import { Card, Button, Jumbotron, Accordion } from "react-bootstrap";
-import colorScheme from "../../styles/mainColorPallete";
-import EmptyView from '../layout/EmptyView';
 
-// should i connect this to redux?
-//TODO: NEED TO ADD CHECKS
+//Check box has been added - next iteration should enable these to be connected to the database or local storage to maintain state!
 
 //innitial states
 const innitialShoppingListState = { list: [] };
@@ -20,22 +23,30 @@ const innitialBudgetTotal = null;
 const ListIngredredients = ({ ingredients }) => {
   const ingreds = ingredients.map((item) => {
     return (
-      <div
-        style={{
-          backgroundColor: "white",
-          margin: 1,
-          height: 35,
-          boxShadow: "0px 0px 4px 0px #C05A2E",
-          display: "flex",
-          borderRadius: 5,
-        }}
+      <InputGroup 
+      // className="mb-1"
       >
-        <div>
-          {/* {item.checked} */}
-          {item}
-        </div>
-        {/* <div style={{ right: 20, position: "absolute" }}>£{item.price}</div> */}
-      </div>
+      <InputGroup.Prepend>
+        <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+      </InputGroup.Prepend>
+      <FormControl style={{backgroundColor: 'white'}} disabled aria-label="Text input with checkbox" value={item}/>
+    </InputGroup>
+      // <div
+      //   style={{
+      //     backgroundColor: "white",
+      //     margin: 1,
+      //     height: 35,
+      //     boxShadow: "0px 0px 4px 0px #C05A2E",
+      //     display: "flex",
+      //     borderRadius: 5,
+      //   }}
+      // >
+      //   <div>
+      //     {/* {item.checked} */}
+      //     {item}
+      //   </div>
+      //   {/* <div style={{ right: 20, position: "absolute" }}>£{item.price}</div> */}
+      // </div>
     );
   });
 
@@ -46,9 +57,12 @@ const ShoppingListRecipes = ({ list }) => {
   const ItemsInShoppingList = list.map((recipe) => {
     return (
       <>
-        <h4 style={{ margin: 0, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'scroll' }}>{recipe.recipeName}</h4>
+      <div style={{marginBottom: 2, display: 'flex'}}>
+        <h4 style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'scroll' }}>{recipe.recipeName}</h4>
+        {/* <BsTrash style={{ color: "white" }} size={20} /> */}
+        </div>
         <ListIngredredients ingredients={recipe.ingredients} />
-        <div style={{ right: 20, position: "absolute" }}>
+        <div style={{ textAlignLast: 'right', fontWeight: 'bold' }}>
           Total: £{recipe.totalPrice}
         </div>
       </>
@@ -72,7 +86,73 @@ const getBudgetTotal = async () => {
 const getShoppingListTotalFunction = (list) => {
   let total = 0;
   list.map((recipe) => (total = total + recipe.totalPrice));
-  return total;
+  return total.toFixed(2);
+};
+
+const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
+  const totalInShoppingList = getShoppingListTotalFunction(list.list);
+  console.log(totalInShoppingList);
+
+  //2 decimal places! 
+  const budgetTotalDp = budgetTotal?.toFixed(2);
+
+  return (
+    <Accordion defaultActiveKey="0">
+    <Card style={{marginBottom: 5}}>
+      <Card.Header style={{padding: 0}}>
+        <Accordion.Toggle as={Button} variant="link" eventKey="0">
+          Groceries Budget
+        </Accordion.Toggle>
+      </Card.Header>
+      <Accordion.Collapse eventKey="0">
+        <Card.Body>
+          <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+          <div style={{textAlign: 'center',  padding: 5}}>
+            £{budgetTotalDp}
+            <div>Budget</div>
+          </div>
+          <div style={{textAlign: 'center',  padding: 5}}>
+            £{totalInShoppingList}
+            <div>In Shopping List</div>
+          </div>
+          <div style={{textAlign: 'center',  padding: 5}}>
+            £{budgetTotalDp - totalInShoppingList}
+            <div>Left</div>
+    
+          </div>
+          </div>
+        </Card.Body>
+      </Accordion.Collapse>
+    </Card>
+  </Accordion>
+  );
+};
+
+const ShoppingListOptionsMenu = ({list, setIsLoading}) => {
+  return (
+    <div style={{ backgroundColor: colorScheme.blue, height: 40, paddingLeft: 10, fontWeight: 'bold' }}>
+    {list.list.length} Recipes
+    <Button
+    size="sm"
+    variant="light"
+      style={{ float: "right", marginTop: 2 }}
+      onClick={() => {
+        clearUserShoppingList(list._id);
+        setIsLoading(true);
+      }}
+    >
+      Clear
+    </Button>
+    <Button
+    size="sm"
+    variant="light"
+      style={{ float: "right", marginTop: 2 }}
+      onClick={() => alert("this")}
+    >
+      Export
+    </Button>
+  </div>
+  );
 };
 
 export const ShoppingList = () => {
@@ -88,12 +168,7 @@ export const ShoppingList = () => {
     setIsLoading(true);
 
     getCurrentUserShoppingList().then((shoppingList) => {
-      // console.log(shoppingList);
       setShoppingList(shoppingList);
-      //function to get the shopping list total
-      // const shoppingListTotalGenerated = getShoppingListTotalFunction(shoppingList.list);
-      // setShoppingListTotal(shoppingListTotalGenerated);
-      // console.log(shoppingListTotal);
     });
 
     getBudgetTotal().then((totalBudget) => {
@@ -105,82 +180,20 @@ export const ShoppingList = () => {
   }, [isLoading]);
 
   console.log(list);
-  const totalInShoppingList = getShoppingListTotalFunction(list.list);
 
   return (
-    <div>
+    <div style={{marginBottom: 95}}>
       {isLoading ? (
         <Spinner />
       ) : (
         <>
-          <Accordion defaultActiveKey="0">
-            <Card style={{marginBottom: 5}}>
-              <Card.Header style={{padding: 0}}>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  Groceries Budget
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-                  <div style={{textAlign: 'center',  padding: 5}}>
-                    £{budgetTotal}
-                    <div>Budget</div>
-                  </div>
-                  <div style={{textAlign: 'center',  padding: 5}}>
-                    £{totalInShoppingList}
-                    <div>In Shopping List</div>
-                  </div>
-                  <div style={{textAlign: 'center',  padding: 5}}>
-                    £{budgetTotal - totalInShoppingList}
-                    <div>Left</div>
-            
-                  </div>
-                  </div>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-          {/* <Jumbotron style={{ height: 100, marginBottom: 5, display: 'flex' }}>
-            <div>
-               £{budgetTotal}
-              Budget
-            </div>
-            <div>
-               £{totalInShoppingList}
-              In Shopping List
-            </div>
-            <div>
-               £{budgetTotal - totalInShoppingList}
-              Left
-            </div>
-          </Jumbotron> */}
-
-          <div style={{ backgroundColor: colorScheme.blue, height: 40 }}>
-            {list.list.length} Recipes
-            <Button
-              style={{ float: "right", marginTop: 2, backgroundColor: "red" }}
-              onClick={() => {
-                clearUserShoppingList(list._id);
-                setIsLoading(true);
-              }}
-            >
-              Clear
-            </Button>
-            <Button
-              style={{ float: "right", marginTop: 2 }}
-              onClick={() => alert("this")}
-            >
-              Export
-            </Button>
-          </div>
+         <OverallShoppingListAndBudgetComparison budgetTotal={budgetTotal} list={list}/>
+         <ShoppingListOptionsMenu list={list} setIsLoading={setIsLoading}/> 
         {
           list.list.length === 0 ? <EmptyView/> : 
           <ShoppingListRecipes list={list.list} />
         }
-
-
-          
+  
         </>
       )}
     </div>
