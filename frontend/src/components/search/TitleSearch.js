@@ -1,15 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { FormControl, InputGroup, Button } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import { getRecipesBasedOnTitle } from "../../actions/search";
-import { FlatList } from "react-native-web";
+//Imports
+import React, { useEffect, useState } from "react"; //https://reactjs.org/
+import { FlatList } from "react-native-web"; //https://reactnative.dev/docs/flatlist
+
+//Custom components
 import { MiniRecipeCard } from "../post/MiniRecipeCard";
 import Spinner from "../layout/CustomSpinner";
+import EmptyView from "../layout/EmptyView";
+
+//Custom actions
+import { getRecipesBasedOnTitle } from "../../actions/search";
+
+const Results = ({ recipes, title }) => {
+  //If there are no results (empty array), display the empty view, else render the flat list.
+  if (recipes.length === 0) {
+    return <EmptyView type={title} />;
+  }
+
+  return (
+    <FlatList
+      horizontal={false}
+      data={recipes}
+      keyExtractor={(item) => item._id}
+      numColumns={3}
+      renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
+    />
+  );
+};
 
 export const TitleSearch = ({ match }) => {
-
-    const title = match.params.id;
-    console.log(title);
+  const title = match.params.id;
+  console.log(title);
 
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,20 +44,7 @@ export const TitleSearch = ({ match }) => {
   }, []);
 
   return (
-    <>
-    {isLoading ? (
-      <Spinner />
-    ) : (
-      <FlatList
-        horizontal={false}
-        data={recipes}
-        keyExtractor={(item) => item._id}
-        numColumns={3}
-        renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
-      />
-    )}
-  </>
- 
+    <>{isLoading ? <Spinner /> : <Results recipes={recipes} title={title} />}</>
   );
 };
 

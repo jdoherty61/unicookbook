@@ -1,10 +1,28 @@
-import React, {useEffect, useState} from "react";
-import { FormControl, InputGroup, Button } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
-import { getRecipesBasedOffUserPreferences } from '../../actions/search';
-import { FlatList } from "react-native-web";
+import React, { useEffect, useState } from "react"; //https://reactjs.org/
+import { FlatList } from "react-native-web"; //https://reactnative.dev/docs/flatlist
+
 import { MiniRecipeCard } from "../post/MiniRecipeCard";
 import Spinner from "../layout/CustomSpinner";
+import EmptyView from "../layout/EmptyView";
+
+import { getRecipesBasedOffUserPreferences } from "../../actions/search";
+
+const Results = ({ recipes, title }) => {
+  //If there are no results (empty array), display the empty view, else render the flat list.
+  if (recipes.length === 0) {
+    return <EmptyView type={title} />;
+  }
+
+  return (
+    <FlatList
+      horizontal={false}
+      data={recipes}
+      keyExtractor={(item) => item._id}
+      numColumns={3}
+      renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
+    />
+  );
+};
 
 export const UserPreferencesSearchResults = () => {
   const [recipes, setRecipes] = useState([]);
@@ -12,30 +30,16 @@ export const UserPreferencesSearchResults = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getRecipesBasedOffUserPreferences().then(data => {
+    getRecipesBasedOffUserPreferences().then((data) => {
       setRecipes(data);
       console.log(data);
       setIsLoading(false);
     });
-
   }, []);
-
-  //NEED AN EMPTY SAYING THERE IS NO RECIPES STATE!
-
 
   return (
     <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <FlatList
-          horizontal={false}
-          data={recipes}
-          keyExtractor={(item) => item._id}
-          numColumns={3}
-          renderItem={(recipe) => <MiniRecipeCard recipe={recipe.item} />}
-        />
-      )}
+      {isLoading ? <Spinner /> : <Results recipes={recipes} title={"User Preferences"} />}
     </>
   );
 };
