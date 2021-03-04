@@ -1,5 +1,5 @@
-//import React from 'react';
-//import style from 'styled-components';
+//Created a file dedicated to storing the main colours used in my app.
+// Then used this throughout my app.
 
 const colorScheme = {
     orange: '#FD8A2B',

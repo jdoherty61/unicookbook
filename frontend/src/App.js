@@ -1,7 +1,8 @@
+// Required imports from package.json
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 //Private routing component created
-import {View, Text} from 'react-native';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 //General layout
@@ -13,7 +14,7 @@ import BottomNavBar from "./components/layout/BottomNavBar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
-//Screens
+//Created Screens
 import Home from './components/home/Home';
 import Profile from './components/profile/Profile';
 import BudgetCalculator from './components/budgetCalculator/BudgetCalculator';
@@ -37,8 +38,8 @@ import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 
 //styling
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';  //https://react-bootstrap.github.io/getting-started/introduction
+import "./App.css"; // https://www.udemy.com/share/101WIoAEYbcV9RRnUD/ helped with this.
 
 
 if (localStorage.token) {
@@ -78,17 +79,6 @@ const App = () => {
 
               <PrivateRoute exact path="/promotions" component={Promotions} />
               <PrivateRoute exact path="/advice" component={Advice} />
-
-
-
-            {/* Search title - will be similar to post
-              search by user preferences - can be one
-              search by uni - can be one
-              search by dinner/lunch dinner or snack - can be one
-              promotions
-              user preferences filter
-            */}
-
             </Switch>
           </section>
           <BottomNavBar />

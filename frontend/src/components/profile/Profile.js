@@ -116,7 +116,7 @@ const Profile = ({
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
             // minHeight: 455
-            height: 455,
+            height: 460,
             overflow: 'scroll'
           }}
         >
@@ -138,7 +138,7 @@ const Profile = ({
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
             // minHeight: 455
-            height: 455,
+            height: 460,
             overflow: 'scroll'
           }}
         >
@@ -151,7 +151,7 @@ const Profile = ({
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
             // minHeight: 455
-            height: 455,
+            height: 460,
             overflow: 'scroll'
           }}
         >
