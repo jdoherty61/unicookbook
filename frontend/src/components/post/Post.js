@@ -21,7 +21,8 @@ import {convertDifficultyToUserFriendlyText, convertMealToUserFriendlyText} from
 const innitialRecipeState = {
   image: defaultImg,
   ingredients: [],
-  instructions: ""
+  instructions: "",
+  totalPrice: 0
   // incomplete
 };
 
@@ -159,6 +160,7 @@ export const Post = ({ match }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const id = match.params.id;
+  const convertToDouble = (post.totalPrice).toFixed(2);
 
   useEffect(() => {
     // console.log(id);
@@ -179,7 +181,7 @@ export const Post = ({ match }) => {
             <Card.Title style={{ display: "flex", padding: '0px 15px', fontSize: 25 }}>
               <div style={{color: colorScheme.blue, width: 260}}>{post.title}</div>
               <div style={{ right: 10, position: "absolute", color: colorScheme.orange }}>
-                £{post.totalPrice}
+                £{convertToDouble}
               </div>
             </Card.Title>
             <Card.Img

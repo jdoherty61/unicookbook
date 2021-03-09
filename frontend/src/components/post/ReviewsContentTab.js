@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Card, InputGroup, Button, Modal, ListGroup } from "react-bootstrap";
+import { Card, InputGroup, Button, Modal, ListGroup } from "react-bootstrap"; //https://react-bootstrap.github.io/
 import logo from "../../images/logo.png";
 
 //This is for the reviews tab in the Post view. It is currently hard coded as there is no review functionality, but it shows the capabilities of

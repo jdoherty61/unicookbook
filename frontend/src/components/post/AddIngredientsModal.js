@@ -11,6 +11,7 @@ const StyledButton = styled(Button)`
 
 //This component was used when adding a recipe. When adding ingredients to a recipe a modal will display so users can add one ingredient at a time!
 //Left a few comments incase of errors
+
 export const AddIngredientsModal = ({ post, setPost }) => {
   const [show, setShow] = useState(false);
   //setting it to an empty string

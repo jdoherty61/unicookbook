@@ -37,6 +37,8 @@ const ListIngredredients = ({ ingredients }) => {
 //Mapping the list returned from the DB, and splitting the list into their recipes with corresponding total and ingredients
 const ShoppingListRecipes = ({ list }) => {
   const ItemsInShoppingList = list.map((recipe) => {
+    const convertToDouble = (recipe.totalPrice).toFixed(2);
+
     return (
       <>
       <div style={{marginBottom: 2, display: 'flex'}}>
@@ -44,7 +46,7 @@ const ShoppingListRecipes = ({ list }) => {
         </div>
         <ListIngredredients ingredients={recipe.ingredients} />
         <div style={{ textAlignLast: 'right', fontWeight: 'bold' }}>
-          Total: £{recipe.totalPrice}
+          Total: £{convertToDouble}
         </div>
       </>
     );
@@ -81,6 +83,7 @@ const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
   const budgetTotalDp = budgetTotal?.toFixed(2);
 
   const totalLeft = budgetTotalDp - totalInShoppingList
+  const convertTotalLeft = totalLeft.toFixed(2);
 
   //colours 
   const BudgetColour = colorScheme.blue; 
@@ -109,7 +112,7 @@ const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
           </div>
           <div style={{textAlign: 'center',  padding: 5}}>
           <div style={{fontWeight: 'bold', color: totalLeftColour}}>
-            £{totalLeft}
+            £{convertTotalLeft}
             </div>
             <div>Left</div>
     

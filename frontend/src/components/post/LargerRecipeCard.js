@@ -68,6 +68,8 @@ const StyledImage = styled(CardImageHeader)`
 
 //This for the recipe cards that were designed for the home screen. They are larger versions of the smaller recipe cards.
 export const LargerRecipeCard = ({recipe}) => {
+  const convertToDouble = (recipe.totalPrice).toFixed(2);
+
     return (
         <Link to={`/posts/${recipe._id}`}>
         <StyledCard key={recipe.id}>
@@ -104,7 +106,7 @@ export const LargerRecipeCard = ({recipe}) => {
               {recipe.title}
               </StyledCardText>
               <StyledCardPrice>
-              £{recipe.totalPrice}
+              £{convertToDouble}
               
               <span style={{position: 'absolute', right: 0, padding: 5, fontSize: 15, color: 'grey', fontWeight: 'normal'}}>
               {recipe.effortTime} mins

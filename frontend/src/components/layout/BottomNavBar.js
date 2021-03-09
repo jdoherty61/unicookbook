@@ -14,14 +14,6 @@ import { FaPiggyBank } from "react-icons/fa";
 import { GiCook } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 
-//Styled imported
-// import styled from "styled-components";
-// import colorScheme from "../../styles/mainColorPallete";
-
-// const StyledButton = styled(Button)`
-//   background-color: ${colorScheme.orange};
-// `;
-
 const initialButtonState = {
   home: false,
   shoppinglist: false,
