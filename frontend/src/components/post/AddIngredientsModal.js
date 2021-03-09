@@ -9,6 +9,8 @@ const StyledButton = styled(Button)`
   background-color: ${colorScheme.blue};
 `;
 
+//THIS WAS USED FOR THE POST FORM. THIS WAS TO ADD INDIVIDUAL INGREDIENTS
+
 export const AddIngredientsModal = ({ post, setPost }) => {
   const [show, setShow] = useState(false);
   //setting it to an empty string

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, InputGroup, Button, Modal, ListGroup } from "react-bootstrap";
+import { Card, Button, ListGroup } from "react-bootstrap";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
-import logo from "../../images/logo.png";
 
 import {
   AiOutlineClockCircle,
@@ -10,27 +9,29 @@ import {
   AiOutlineSave,
 } from "react-icons/ai"; //https://react-icons.github.io/react-icons
 import { GiCook, GiMeal } from "react-icons/gi";
-import { FiList } from "react-icons/fi";
 
+import ReviewsContentTab from "./ReviewsContentTab";
 import IngredientsModal from "./IngredientsModal";
 import defaultImg from "../../images/logo.png";
 import colorScheme from "../../styles/mainColorPallete";
 
 import { getPostByID } from "../../actions/posts";
+import {convertDifficultyToUserFriendlyText, convertMealToUserFriendlyText} from "./postUtils";
 
 const innitialRecipeState = {
   image: defaultImg,
   ingredients: [],
-  instructions: "",
-  //should I add more here?
+  instructions: ""
+  // incomplete
 };
 
 const StyledTabs = styled(Tabs)`
   color: ${colorScheme.basicLightText};
+  margin-top: 5px;
 
   .react-tabs__tab--selected {
-    background: ${colorScheme.lightBackground};
-    border-color: ${colorScheme.lightBackground};
+    background: ${colorScheme.basicWhite};
+    border-color: ${colorScheme.shadow};
     color: ${colorScheme.blue};
     border-radius: 5px 5px 0 0;
   }
@@ -66,7 +67,7 @@ const CardTitle = ({ post }) => {
         />
       </div>
       <div>
-        <Card.Title style={{ marginTop: 5, marginBottom: 5, fontSize: 20 }}>
+        <Card.Title style={{ marginTop: 5, marginBottom: 5, fontSize: 18 }}>
           {post.ownerName}
         </Card.Title>
         <Card.Subtitle
@@ -76,52 +77,17 @@ const CardTitle = ({ post }) => {
           {post.ownerUni}
         </Card.Subtitle>
       </div>
+      {/* This would be options to delete, report etc - further iteration */}
       <div style={{ position: "absolute", right: 10, marginTop: 10 }}>
         <i style={{ color: "grey" }} class="fas fa-ellipsis-v fa-lg"></i>
-        {/* will be for people who own the recipe */}
       </div>
     </div>
   );
 };
 
-
-const convertDifficultyToUserFriendlyText = (difficulty) => {
-  switch(difficulty) {
-    case 'EASY':
-    return 'Easy';
-    case 'MODERATE':
-      return 'Moderate';
-    case 'DIFFICULT': 
-    return 'Difficult';
-   default: 
-    return '';
-  }
-};
-
-const convertMealToUserFriendlyText = (meal) => {
-  switch(meal) {
-    case 'BREAKFAST':
-    return 'Breakfast';
-    case 'LUNCH':
-      return 'Lunch';
-    case 'DINNER': 
-    return 'Dinner';
-    case 'SNACK':
-      return 'Snack';
-   default: 
-    return '';
-  };
-};
-
 const CardContent = ({ post }) => {
   return (
     <Card.Body style={{ padding: "5px 15px" }}>
-      {/* <Card.Title style={{ display: "flex" }}>
-        <div>{post.title}</div>
-        <div style={{ right: 10, position: "absolute", color: "red" }}>
-          £{post.totalPrice}
-        </div>
-      </Card.Title> */}
       <Card.Text>
         <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 10 }}>
           <div style={{color: 'grey'}}>
@@ -133,13 +99,12 @@ const CardContent = ({ post }) => {
           </div>
           <div style={{color: 'grey'}}>
             <GiCook style={{ fill: colorScheme.blue }} size={30} />
-
             {convertDifficultyToUserFriendlyText(post.chosenDifficulty)}
           </div>
   
-  <div style={{color: 'grey'}}>
-          <GiMeal style={{ fill: colorScheme.blue }} size={30} />
-          {convertMealToUserFriendlyText(post.meal)}
+          <div style={{color: 'grey'}}>
+            <GiMeal style={{ fill: colorScheme.blue }} size={30} />
+            {convertMealToUserFriendlyText(post.meal)}
           </div>
         </div>
       </Card.Text>
@@ -153,7 +118,6 @@ const Interactions = ({ post }) => {
       style={{
         marginTop: 5,
         display: "flex",
-        // justifyContent: 'flex-end'
         paddingLeft: 15,
       }}
     >
@@ -172,95 +136,15 @@ const IngredientsContentTab = ({post}) => {
 
   return (
     <div style={{ padding: 5 }}>
-<ListGroup>
-    {post.ingredients.length === 0 ? (
-      <> no Ingredients</>
-    ) : (
-      <ListIngredients ingredients={post.ingredients} />
-    )}
-    </ListGroup>
+      <ListGroup>
+        {post.ingredients.length === 0 ? 
+          <> no Ingredients</>
+         : 
+          <ListIngredients ingredients={post.ingredients} />
+        }
+      </ListGroup>
   </div>
   );
-};
-
-
-const ReviewsContentTab = () => {
-//hard coded to show what the potential of a reviews section will be 
-return (
-  <div style={{ padding: 5 }}>
-   <ListGroup>
-   <ListGroup.Item>
-   <div style={{ display: "flex" }}>
-      <div>
-        <img
-          src={logo} //refactored to allow users to edit their profile pics
-          alt="new"
-          style={{
-            height: 40,
-            width: 40,
-            border: "1px solid #33e",
-            borderRadius: 100,
-            margin: 5,
-            alignSelf: "center",
-          }}
-        />
-      </div>
-      <div>
-        <Card.Title style={{ marginTop: 5, marginBottom: 5, fontSize: 20 }}>
-          Caoimhe Power
-        </Card.Title>
-        <Card.Subtitle
-          style={{ marginBottom: 0, fontSize: 15 }}
-          className="mb-2 text-muted"
-        >
-          Queen's University, Belfast
-        </Card.Subtitle>
-      </div>
-      <div style={{ position: "absolute", right: 10, marginTop: 10 }}>
-        <i style={{ color: "grey" }} class="fas fa-ellipsis-v fa-lg"></i>
-        {/* will be for people who own the recipe */}
-      </div>
-    </div>
-    <ListGroup.Item>Unreal! I got the same recipe from tescos for £2 cheaper. Love this thank you</ListGroup.Item>
-   </ListGroup.Item>
-
-   <ListGroup.Item>
-   <div style={{ display: "flex" }}>
-      <div>
-        <img
-          src={logo} //refactored to allow users to edit their profile pics
-          alt="new"
-          style={{
-            height: 40,
-            width: 40,
-            border: "1px solid #33e",
-            borderRadius: 100,
-            margin: 5,
-            alignSelf: "center",
-          }}
-        />
-      </div>
-      <div>
-        <Card.Title style={{ marginTop: 5, marginBottom: 5, fontSize: 20 }}>
-          Jenny Stevenson
-        </Card.Title>
-        <Card.Subtitle
-          style={{ marginBottom: 0, fontSize: 15 }}
-          className="mb-2 text-muted"
-        >
-          Queen's University, Belfast
-        </Card.Subtitle>
-      </div>
-      <div style={{ position: "absolute", right: 10, marginTop: 10 }}>
-        <i style={{ color: "grey" }} class="fas fa-ellipsis-v fa-lg"></i>
-        {/* will be for people who own the recipe */}
-      </div>
-    </div>
-    <ListGroup.Item>Love it</ListGroup.Item>
-   </ListGroup.Item>
- </ListGroup>
-</div>
-)
 };
 
 export const Post = ({ match }) => {
@@ -270,24 +154,23 @@ export const Post = ({ match }) => {
   const id = match.params.id;
 
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     setIsLoading(true);
     getPostByID(id).then((post) => {
       post !== undefined && setPost(post);
-      console.log(post);
-      // setPost(post)
+      // console.log(post);
       setIsLoading(false);
     });
   }, []);
 
   return (
-    <>
+    <div style={{height: 680, overflow: 'scroll'}}>
       {!isLoading && (
         <>
           <Card>
             <CardTitle post={post} />
-            <Card.Title style={{ display: "flex", padding: '0px 15px', fontWeight: 'bold', fontSize: 25 }}>
-              <div style={{color: colorScheme.blue}}>{post.title}</div>
+            <Card.Title style={{ display: "flex", padding: '0px 15px', fontSize: 25 }}>
+              <div style={{color: colorScheme.blue, width: 260}}>{post.title}</div>
               <div style={{ right: 10, position: "absolute", color: colorScheme.orange }}>
                 £{post.totalPrice}
               </div>
@@ -314,10 +197,9 @@ export const Post = ({ match }) => {
 
             <TabPanel
               style={{
-                backgroundColor: colorScheme.lightBackground,
+                backgroundColor: colorScheme.basicWhite,
                 marginTop: -11,
-                minHeight: 30,
-                minHeight: 515,
+                minHeight: 150,
                 color: "black",
               }}
             >
@@ -325,10 +207,9 @@ export const Post = ({ match }) => {
             </TabPanel>
             <TabPanel
               style={{
-                backgroundColor: colorScheme.lightBackground,
+                backgroundColor: colorScheme.basicWhite,
                 marginTop: -11,
-                minHeight: 30,
-                minHeight: 515,
+                minHeight: 150,
                 color: "black",
               }}
             >
@@ -336,10 +217,9 @@ export const Post = ({ match }) => {
             </TabPanel>
             <TabPanel
               style={{
-                backgroundColor: colorScheme.lightBackground,
+                backgroundColor: colorScheme.basicWhite,
                 marginTop: -11,
-                minHeight: 30,
-                minHeight: 515,
+                minHeight: 150,
                 color: "black",
               }}
             >
@@ -348,7 +228,7 @@ export const Post = ({ match }) => {
           </StyledTabs>
         </>
       )}
-    </>
+      </div>
   );
 };
 

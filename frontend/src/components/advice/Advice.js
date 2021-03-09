@@ -7,7 +7,7 @@ export const Advice = () => {
   return (
     <div style={{ marginTop: 20, padding: 10 }}>
       <h2 style={{ color: "white", fontWeight: "bold" }}>
-        Learn How To Take Card Of Our Environment!
+        Learn How To Take Care Of Our Environment!
       </h2>
 
       <Accordion>

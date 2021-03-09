@@ -13,6 +13,8 @@ import { addToUserShoppingList } from "../../actions/shoppingList";
 import colorScheme from "../../styles/mainColorPallete";
 import Separator from "../layout/Separator";
 
+//THIS WAS THE SHOPPING LIST MODAL! USED FOR MULTIPLE INGREDIENTS ETC WHEN CLICKING ON ADD TO SHOPPING LIST
+
 export const IngredientsModal = ({ recipe }) => {
   const { title, totalPrice, ingredients } = recipe;
   // console.log(title);

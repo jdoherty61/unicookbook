@@ -15,9 +15,11 @@ const calculateNewBudget = (
       (studentFinanceIncome + totalIncome - totalSpending) /
       convertDurationToWeeks;
   
+    const convertCalculationToDouble = calculation.toFixed(2);
+    
     console.log(calculation);
   
-    return calculation;
+    return convertCalculationToDouble;
   
     //post once total is calculated then post it up
   };

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { addPost } from "../../actions/posts";
-import { Redirect } from "react-router-dom";
-import { Card, InputGroup, Button, Modal, ListGroup } from "react-bootstrap";
+import { InputGroup, Button, ListGroup, FormControl } from "react-bootstrap"; //https://react-bootstrap.github.io/
 import styled from "styled-components";
+
 import AddIngredientsModal from "./AddIngredientsModal";
-import { useLocation, useHistory } from "react-router-dom";
+import { addPost } from "../../actions/posts";
+
+import colorScheme from "../../styles/mainColorPallete";
+import { GiCook } from "react-icons/gi"; //https://react-icons.github.io/react-icons/
 
 {
   /* help with this
@@ -19,9 +20,90 @@ import { useLocation, useHistory } from "react-router-dom";
 // {/* <img src={URL.createObjectURL(post.image)}/>
 
 const StyledInput = styled.input`
-border: '1px solid red';
-              border-radius: 5px
+  border: "1px solid red";
+  border-radius: 5px;
 `;
+
+const DifficultyButtons = ({ setPost, post }) => {
+  const easyColour = post.chosenDifficulty === "EASY" ? colorScheme.blue : "grey";
+  const moderateColour = post.chosenDifficulty === "MODERATE" ? colorScheme.blue : "grey";
+  const difficultyColour = post.chosenDifficulty === "DIFFICULT" ? colorScheme.blue : "grey";
+
+  return (
+    <div style={{ marginTop: 10 }}>
+      <h4>Difficulty</h4>
+      <div style={{ display: "flex" }}>
+        <Button
+          style={{ backgroundColor: easyColour }}
+          onClick={() => setPost({ ...post, chosenDifficulty: "EASY" })}
+        >
+          <GiCook style={{ fill: colorScheme.basicLightText }} size={20} />
+          Easy
+        </Button>
+        <Button
+          onClick={() => setPost({ ...post, chosenDifficulty: "MODERATE" })}
+          style={{ backgroundColor: moderateColour }}
+        >
+          <GiCook style={{ fill: colorScheme.basicLightText }} size={20} />
+          <GiCook style={{ fill: colorScheme.basicLightText }} size={20} />
+          Moderate
+        </Button>
+        <Button
+          onClick={() => setPost({ ...post, chosenDifficulty: "DIFFICULT" })}
+          style={{ backgroundColor: difficultyColour }}
+        >
+          <GiCook style={{ fill: colorScheme.basicLightText }} size={20} />{" "}
+          <GiCook style={{ fill: colorScheme.basicLightText }} size={20} />{" "}
+          <GiCook style={{ fill: colorScheme.basicLightText }} size={20} />
+          Difficult
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const MealCategoryButtons = ({ setPost, post }) => {
+  const snackColour = post.meal === "SNACK" ? colorScheme.blue : "grey";
+  const breakfastColour = post.meal === "BREAKFAST" ? colorScheme.blue : "grey";
+  const lunchColour = post.meal === "LUNCH" ? colorScheme.blue : "grey";
+  const dinnerColour = post.meal === "DINNER" ? colorScheme.blue : "grey";
+
+  return (
+    <div style={{ marginTop: 10 }}>
+      <h4>Meal</h4>
+      <div style={{ display: "flex" }}>
+        <Button
+          style={{ width: 90, margin: 1, backgroundColor: breakfastColour }}
+          onClick={() => setPost({ ...post, meal: "BREAKFAST" })}
+        >
+          <i class="fas fa-apple-alt"></i>
+          Breakfast
+        </Button>
+        <Button
+          style={{ width: 90, margin: 1, backgroundColor: lunchColour }}
+          onClick={() => setPost({ ...post, meal: "LUNCH" })}
+        >
+          <i class="fas fa-bacon"></i>
+          Lunch
+        </Button>
+        <Button
+          style={{ width: 90, margin: 1, backgroundColor: dinnerColour }}
+          onClick={() => setPost({ ...post, meal: "DINNER" })}
+        >
+          <i class="fas fa-drumstick-bite"></i>
+          Dinner
+        </Button>
+        <Button
+          style={{ width: 90, margin: 1, backgroundColor: snackColour }}
+          onClick={() => setPost({ ...post, meal: "SNACK" })}
+        >
+          <i class="fas fa-cookie"></i>
+          Snack
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const PostForm = (props) => {
   //Have to have an innitial state on mount with innitial values to target.
@@ -33,25 +115,25 @@ const PostForm = (props) => {
     chosenDifficulty: "EASY", //DEFAULT
     meal: "LUNCH", //DEFAULT
     image: "default.png", //default (incase failure)
-    ingredients: []
+    ingredients: [],
   });
 
   //Setting the state based on the value changed.
-  const onChange = (val) => setPost({ ...post, [val.target.name]: val.target.value });
+  const onChange = (val) =>
+    setPost({ ...post, [val.target.name]: val.target.value });
   console.log(post);
 
   const handleRemove = (ingredient) => {
-    const newList = post.ingredients.filter(ingred => ingred !== ingredient)
-    setPost({...post, ingredients: newList});
-};
+    const newList = post.ingredients.filter((ingred) => ingred !== ingredient);
+    setPost({ ...post, ingredients: newList });
+  };
 
   return (
-    <div class="post-form" style={{maxHeight: 690,
-      overflow: 'scroll'}}>
+    <div class="post-form" style={{ maxHeight: 685, overflow: "scroll" }}>
       <form
         class="form my-1"
-        style={{overflow: 'hidden'}}
-        action='/home'
+        style={{ overflow: "hidden" }}
+        action="/home"
         onSubmit={(e) => {
           // e.preventDefault(); //this prevents the form from going off the addRecipe view - basically disregards to action.
           const formData = new FormData();
@@ -65,13 +147,13 @@ const PostForm = (props) => {
           formData.append("meal", post.meal);
           // https://laracasts.com/discuss/channels/javascript/formdata-append-javascript-array-jsonstringify-how-to-cast-as-php-array
           for (var i = 0; i < post.ingredients.length; i++) {
-            formData.append('ingredients', post.ingredients[i]);
+            formData.append("ingredients", post.ingredients[i]);
           }
           addPost(formData);
         }}
       >
-        <div style={{marginTop: 10}}>
-          <h4 style={{margin: 0}}>Select Recipe Image</h4>
+        <div style={{ marginTop: 10 }}>
+          <h4 style={{ margin: 0 }}>Select Recipe Image</h4>
           <input
             type="file"
             required
@@ -79,8 +161,8 @@ const PostForm = (props) => {
           />
         </div>
 
-        <div style={{marginTop: 10}}>
-          <h4 style={{margin: 0}}>Title</h4>
+        <div style={{ marginTop: 10 }}>
+          <h4 style={{ margin: 0 }}>Title</h4>
           <StyledInput
             type="text"
             placeholder="Title"
@@ -88,56 +170,57 @@ const PostForm = (props) => {
             onChange={(val) => onChange(val)}
             name="title"
             required
-            style={{border: '1px solid red',
-              borderRadius: 5}}
+            style={{ border: "1px solid red", borderRadius: 5 }}
           />
         </div>
 
-        <div style={{marginTop: 10}}>
-        <h3>Ingredients</h3>
-        <div>
-          {
-            post.ingredients.length > 0 &&
-<ListGroup>
-{
-            post.ingredients.map(ingredient => {
-                return (
-                  <ListGroup.Item>
-                    <Button variant="light" onClick={() => handleRemove(ingredient)}><i class="far fa-trash-alt"></i></Button>
-                    
-                    {ingredient}
-                    
-                    </ListGroup.Item>
-                );
-            })
-          }
-</ListGroup>
-
-          }
-
-
-
-          <AddIngredientsModal post={post} setPost={setPost}/>
-        </div>
-        </div>
-
-        
-        <h3>Total Price</h3>
-        <div style={{ display: "flex" }}>
-        <input
-            type="number"
-            placeholder="approx total price (£)"
-            value={post.totalPrice}
-            onChange={(val) => onChange(val)}
-            name="totalPrice"
-            required
-            style={{height: 40, border: '1px solid red',
-            borderRadius: 5}}
-          />
+        <div style={{ marginTop: 10 }}>
+          <h4>Ingredients</h4>
+          <div>
+            {post.ingredients.length > 0 && (
+              <ListGroup>
+                {post.ingredients.map((ingredient) => {
+                  return (
+                    <InputGroup className="mb-1">
+                      <InputGroup.Prepend>
+                        <Button
+                          variant="light"
+                          onClick={() => handleRemove(ingredient)}
+                        >
+                          <i class="far fa-trash-alt"></i>
+                        </Button>
+                      </InputGroup.Prepend>
+                      <FormControl
+                        style={{ backgroundColor: "aliceblue" }}
+                        placeholder="Ingredient Name"
+                        value={ingredient}
+                      />
+                    </InputGroup>
+                  );
+                })}
+              </ListGroup>
+            )}
+            <AddIngredientsModal post={post} setPost={setPost} />
+          </div>
         </div>
 
-        <div>
-          <h3>Instructions</h3>
+        <div style={{ marginTop: 10 }}>
+          <h4>Total Price</h4>
+          <div style={{ display: "flex" }}>
+            <input
+              type="number"
+              placeholder=" Approx total price (£)"
+              value={post.totalPrice}
+              onChange={(val) => onChange(val)}
+              name="totalPrice"
+              required
+              style={{ height: 40, border: "1px solid red", borderRadius: 5 }}
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: 10 }}>
+          <h4>Instructions</h4>
           <textarea
             name="instructions"
             cols="30"
@@ -145,74 +228,42 @@ const PostForm = (props) => {
             placeholder="Instructions"
             onChange={(val) => onChange(val)}
             value={post.instructions}
-            style={{border: '1px solid red',
-            borderRadius: 5}}
+            style={{ border: "1px solid red", borderRadius: 5, fontSize:15 }}
             required
           ></textarea>
         </div>
 
-        <div>
-          <h3>Effort Time</h3>
+        <div style={{ marginTop: 10 }}>
+          <h4>Effort Time</h4>
           <input
             type="number"
-            placeholder="Effort Time (mins)"
+            placeholder=" Effort Time (mins)"
             value={post.effortTime}
             onChange={(val) => onChange(val)}
             name="effortTime"
             required
-            style={{height: 40, border: '1px solid red',
-            borderRadius: 5}}
+            style={{ height: 40, border: "1px solid red", borderRadius: 5 }}
           />
         </div>
 
-        <div>
-          <h3>Difficulty</h3>
+        <DifficultyButtons post={post} setPost={setPost} />
+        <MealCategoryButtons post={post} setPost={setPost} />
 
-          <div style={{ display: "flex" }}>
-            {/* USE THE COMPONENT MADE IN SEARCH */}
-            <Button
-              onClick={() => setPost({ ...post, chosenDifficulty: "EASY" })}
-            >
-              Easy
-            </Button>
-            <Button
-              onClick={() => setPost({ ...post, chosenDifficulty: "MODERATE" })}
-            >
-              Moderate
-            </Button>
-            <Button
-              onClick={() =>
-                setPost({ ...post, chosenDifficulty: "DIFFICULT" })
-              }
-            >
-              Difficult
-            </Button>
-          </div>
+        <div style={{ marginTop: 10, textAlign: "center" }}>
+          <input
+            type="submit"
+            action="/home"
+            class="btn btn-dark my-2"
+            value="Add Recipe!"
+            style={{
+              backgroundColor: colorScheme.blue,
+              border: `2px solid ${colorScheme.shadow}`,
+            }}
+          />
         </div>
-
-        <h3>Meal</h3>
-        <div style={{ display: "flex" }}>
-          {/* USE THE COMPONENT MADE IN SEARCH */}
-          <Button onClick={() => setPost({ ...post, meal: "BREAKFAST" })}>
-            Breakfast
-          </Button>
-          <Button onClick={() => setPost({ ...post, meal: "LUNCH" })}>
-            Lunch
-          </Button>
-          <Button onClick={() => setPost({ ...post, meal: "DINNER" })}>
-            Dinner
-          </Button>
-          <Button onClick={() => setPost({ ...post, meal: "SNACK" })}>
-            Snack
-          </Button>
-        </div>
-
-        <input type="submit" action='/home' class="btn btn-dark my-1" value="Add Recipe" />
       </form>
     </div>
   );
 };
-
-PostForm.propTypes = {};
 
 export default PostForm;

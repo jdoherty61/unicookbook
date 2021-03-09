@@ -90,11 +90,18 @@ const getShoppingListTotalFunction = (list) => {
 };
 
 const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
+
   const totalInShoppingList = getShoppingListTotalFunction(list.list);
   console.log(totalInShoppingList);
 
   //2 decimal places! 
   const budgetTotalDp = budgetTotal?.toFixed(2);
+
+  const totalLeft = budgetTotalDp - totalInShoppingList;
+
+  //colours 
+  const BudgetColour = colorScheme.blue; 
+  const totalLeftColour = totalLeft > 0 ? colorScheme.successfulGreen : colorScheme.warningColour;
 
   return (
     <Accordion defaultActiveKey="0">
@@ -108,15 +115,19 @@ const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
         <Card.Body>
           <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
           <div style={{textAlign: 'center',  padding: 5}}>
-            £{budgetTotalDp}
+            <div style={{fontWeight: 'bold', color: BudgetColour}}>£{budgetTotalDp} </div>
             <div>Budget</div>
           </div>
           <div style={{textAlign: 'center',  padding: 5}}>
+          <div style={{fontWeight: 'bold'}}>
             £{totalInShoppingList}
+            </div>
             <div>In Shopping List</div>
           </div>
           <div style={{textAlign: 'center',  padding: 5}}>
-            £{budgetTotalDp - totalInShoppingList}
+          <div style={{fontWeight: 'bold', color: totalLeftColour}}>
+            £{totalLeft}
+            </div>
             <div>Left</div>
     
           </div>
@@ -182,7 +193,7 @@ export const ShoppingList = () => {
   console.log(list);
 
   return (
-    <div style={{marginBottom: 95}}>
+    <div style={{height: 680, overflow: 'scroll'}}>
       {isLoading ? (
         <Spinner />
       ) : (
