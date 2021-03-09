@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; //Using react library and hooks
 import {
     Card,
     Button,
@@ -9,6 +9,8 @@ import {
 
 import colorScheme from "../../styles/mainColorPallete";
 
+//This component is the Input Duration section of the budget calculator. It has been put in its own folder as it contains its own logic
+// Which can make the parent component complicated to understand - parent component and where this is being used is BudgetCalculator.js
 const CalculateDuration = ({ setUsersBudget, usersBudget }) => {
     const [buttonState, setButtonState] = useState({isMonthly: false, isWeekly: false});
     

@@ -15,6 +15,7 @@ const StyledButton = styled(Button)`
   box-shadow: 5px 5px 10px -4px ${colorScheme.shadow};
 `;
 
+// Component is the home screen (AKA the first they will see when they sign in. Comprised up of components such as buttons, tabs and a spinner etc)
 const Home = (props) => {
   const history = useHistory();
 

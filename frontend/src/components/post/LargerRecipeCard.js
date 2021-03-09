@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import colorScheme from "../../styles/mainColorPallete";
 import {
   Card,
   CardBody,
   CardImageHeader,
   CardText
-} from "styled-card-component";
+} from "styled-card-component"; //https://www.npmjs.com/package/styled-card-component
 import { AiOutlineClockCircle } from "react-icons/ai";
 
+import colorScheme from "../../styles/mainColorPallete";
 
 const StyledCard = styled(Card)`
   height: 325px;
@@ -39,13 +39,13 @@ const StyledCardPrice = styled(CardText)`
 `;
 
 const StyledUniText = styled(CardText)`
-white-space: nowrap;
-font-size: 15px;
-text-overflow: ellipsis;
-overflow-y: hidden;
-margin-bottom: 0;
-overflow: hidden;
-width: 140px
+  white-space: nowrap;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+  margin-bottom: 0;
+  overflow: hidden;
+  width: 140px
 `; 
 
 const StyledCardBody = styled(CardBody)`
@@ -57,15 +57,16 @@ const StyledCardBody = styled(CardBody)`
 `;
 
 const StyledImage = styled(CardImageHeader)`
-width: 95%;
-height: 200px;
-margin: 5px;
-margin-top: 0px;
-margin-bottom: 0px;
-border-radius: 5px;
-align-self: center;
+  width: 95%;
+  height: 200px;
+  margin: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  align-self: center;
 `;
 
+//This for the recipe cards that were designed for the home screen. They are larger versions of the smaller recipe cards.
 export const LargerRecipeCard = ({recipe}) => {
     return (
         <Link to={`/posts/${recipe._id}`}>
@@ -113,7 +114,7 @@ export const LargerRecipeCard = ({recipe}) => {
           </StyledCardBody>
         </StyledCard>
         </Link>
-    )
-}
+    );
+};
 
 export default LargerRecipeCard;

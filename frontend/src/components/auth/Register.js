@@ -31,6 +31,7 @@ const initialState = {
   university: "",
 };
 
+//This component is to allow students to register
 export const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState(initialState);
 

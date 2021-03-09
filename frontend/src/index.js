@@ -1,3 +1,4 @@
+//boiler plate file - essentially renders all the react components as DOM elements
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

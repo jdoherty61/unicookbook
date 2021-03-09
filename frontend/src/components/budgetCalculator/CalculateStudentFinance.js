@@ -5,6 +5,7 @@ import {
   InputGroup,
 } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
 
+//Component created to take in the student finance income left off the student
 const CalculateStudentFinance = ({ setUsersBudget, usersBudget }) => {
     return (
       <>

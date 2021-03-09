@@ -1,11 +1,9 @@
 import React, {useState} from "react";
-import { FormControl, InputGroup, Button } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
+import { FormControl, InputGroup, Button } from "react-bootstrap"; //https://react-bootstrap.github.io/
+import Container from 'react-bootstrap/Container'; //https://react-bootstrap.github.io/
 import { useHistory } from "react-router-dom";
-//todo: the title search
-//todo: the category search
-//todo: API actions for all
 
+//Search screen
 export const Search = () => {
   const [titleSearch, setTitleSearch] = useState('');
 

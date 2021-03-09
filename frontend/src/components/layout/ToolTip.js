@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Overlay, Popover } from "react-bootstrap";
 
+//Created this tooltip before i created a generic tooltip but this is specifically used in the budget calculator screen, saying to the user that if using a custom budget it will override the above calculation
 export const ToolTip = () => {
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);

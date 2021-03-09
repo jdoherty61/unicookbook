@@ -1,7 +1,11 @@
 import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+
 import Separator from "../layout/Separator";
+
+//This file is dedicated to the 'Advice' screen in the application, where students could potentially learn how to recycle and store their food.
+//This is hard coded as an example as added last minute to consider social and ethical considerations.
+//Might not be something that students want, but could be used to get feedback.
 
 export const Advice = () => {
   return (

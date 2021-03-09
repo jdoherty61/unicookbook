@@ -1,20 +1,17 @@
 import React, { useState } from "react";
-// https://react-bootstrap.github.io/components/modal/
 import {
-  Card,
   InputGroup,
   FormControl,
   Button,
   Modal,
   ListGroup,
-} from "react-bootstrap";
+} from "react-bootstrap"; // https://react-bootstrap.github.io/components/modal/
 import { FiList } from "react-icons/fi";
-import { addToUserShoppingList } from "../../actions/shoppingList";
+
 import colorScheme from "../../styles/mainColorPallete";
-import Separator from "../layout/Separator";
+import { addToUserShoppingList } from "../../actions/shoppingList";
 
-//THIS WAS THE SHOPPING LIST MODAL! USED FOR MULTIPLE INGREDIENTS ETC WHEN CLICKING ON ADD TO SHOPPING LIST
-
+//This component was used for the shopping list modal - to add or delete recipes before adding to a shopping list
 export const IngredientsModal = ({ recipe }) => {
   const { title, totalPrice, ingredients } = recipe;
   // console.log(title);
@@ -27,19 +24,21 @@ export const IngredientsModal = ({ recipe }) => {
   const [newIngredient, setNewIngredient] = useState("");
   console.log(recipeForShoppingList);
 
+  //close the modal
   const handleClose = () => {
     setNewRecipe({
       recipeName: title,
       totalPrice,
       ingredients,
     });
-
     setNewIngredient("");
-
     setShow(false);
   };
+
+  //open the modal
   const handleShow = () => setShow(true);
 
+  //Remove the ingredient
   const handleRemove = (ingredient) => {
     const newList = recipeForShoppingList.ingredients.filter(
       (ingred) => ingred !== ingredient
@@ -81,7 +80,7 @@ export const IngredientsModal = ({ recipe }) => {
           <h5>Ingredients</h5>
           {recipeForShoppingList.ingredients.length > 0 && (
             <ListGroup>
-              {recipeForShoppingList.ingredients.map((ingredient) => {
+              {recipeForShoppingList.ingredients.map(ingredient => {
                 return (
                   <InputGroup className="mb-3">
                     <InputGroup.Prepend>
@@ -102,7 +101,6 @@ export const IngredientsModal = ({ recipe }) => {
                   </InputGroup>
                 );
               })}         
-                {/* <Separator/> */}
 
               <InputGroup className="mb-3">
                 <InputGroup.Prepend>

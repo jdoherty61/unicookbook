@@ -21,8 +21,10 @@ const StyledNavBar = styled(Navbar)`
   box-shadow: 0px -2px 6px 6px ${colorScheme.shadow};
 `;
 
-//Refactor in future - styling, paddingRight and paddingLeft could be replaced with stronger code to maintain consistency.
-// add sliding menu https://react-flexible-sliding-menu.netlify.app/getting-started
+// Refactor in future - styling, paddingRight and paddingLeft could be replaced with stronger code to maintain consistency.
+// Duplication of some elements which can definitely be refactored.
+// add sliding menu https://react-flexible-sliding-menu.netlify.app/getting-started - for options icon! 
+// This would be used in the future for students to sign out, edit accout and view about us and contact us screens!
 
 const AddRecipeNavigationBar = () => {
   const history = useHistory();
@@ -179,6 +181,9 @@ const FilterUserPreferencesNavBar = () => {
   );
 };
 
+//Using a switch statement here so that when the screen route is changed, the navigation bar will be updated with it to suit that view.
+// I wanted to maintain this as one component instead of multiple headers in every components file so it would just render once and change details as opposed to everytime a screen has changed!
+
 const NavContent = () => {
   const currentPage = useLocation().pathname; //Using the router-dom to retrieve current location, therefore set the navigation bar to appropiate
   //Switch statement to determine the contents of the navigation bar, Will allow for different functionality etc.
@@ -207,6 +212,7 @@ const NavContent = () => {
   }
 };
 
+//This is the component that will be exported! So this is used in the App.js file ... And all of the above is logic within it as you can see by imports.
 export const TopNavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   //TODO: ADD A MODAL COMPONENT AND IF OPTIONS IS CLICKED IT WILL SHOW THE MODAL! - SIGN OUT ETC
   // console.log(useLocation().pathname);
@@ -239,28 +245,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logout })(TopNavBar);
-
-//Note to self - delete this
-
-// <nav className="navbar">
-//   <ul>
-//     <li>
-//       <Link to="/options">
-//         {/* This should display a modal and allow to sign out, user preferences etc. */}
-//         <Button style={{ backgroundColor: colorScheme.orange, paddingRight: 70 }}>
-//           <BsList style={{ color: "black" }} size={25} />
-//         </Button>
-//       </Link>
-//     </li>
-//     <li style={{ fontSize: 25, color: colorScheme.basicText }}>
-//       UniCookBook
-//     </li>
-//     <li>
-//       <Link to="/addRecipe">
-//         <Button style={{ backgroundColor: colorScheme.orange, paddingLeft: 70 }}>
-//           <GrAdd style={{ color: "black" }} size={25} />
-//         </Button>
-//       </Link>
-//     </li>
-//   </ul>
-// </nav>

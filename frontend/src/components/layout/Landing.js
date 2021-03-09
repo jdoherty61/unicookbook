@@ -23,6 +23,8 @@ const LandingPageSection = styled.section`
   height: 100%;
 `;
 
+//This is the landing page (The very first page of the application). The logo and title provide anchorage to the application's purpose.
+
 export const Landing = ({ isAuthenticated }) => {
 
   //if the user is logged in, they should be redirected to their home page

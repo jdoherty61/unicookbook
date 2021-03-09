@@ -22,6 +22,7 @@ const initialState = {
   password: "",
 };
 
+//This component is used to login and check authentication
 export const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState(initialState);
 

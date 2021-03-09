@@ -1,6 +1,8 @@
-//Using this file to keep the utils used - aka the calculations
-import { getCurrentUserBudget, postNewBudget } from "../../actions/userBudget";
+//Using this file to keep the utils used - aka the calculations for the budget calculator.
+//This keeps utils separate from the component file, to help with debugging and organisation.
+import { postNewBudget } from "../../actions/userBudget";
 
+//The calculation to derive a weekly budget for the student.
 const calculateNewBudget = (
     studentFinanceIncome,
     totalIncome,
@@ -16,8 +18,7 @@ const calculateNewBudget = (
       convertDurationToWeeks;
   
     const convertCalculationToDouble = calculation.toFixed(2);
-    
-    console.log(calculation);
+    // console.log(calculation);
   
     return convertCalculationToDouble;
   

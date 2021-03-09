@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"; // https://www.npmjs.com/package/react-tabs
 
 import styled from "styled-components"; //https://styled-components.com/
@@ -9,8 +9,6 @@ import "react-tabs/style/react-tabs.css";
 import colorScheme from "../../styles/mainColorPallete";
 import EmptyView from "../layout/EmptyView";
 import { LargerRecipeCard } from "../post/LargerRecipeCard";
-// import { MiniRecipeCard } from "../post/MiniRecipeCard";
-// import Spinner from "../layout/CustomSpinner";
 
 import { getRecipesForHomePage } from "../../actions/search";
 
@@ -25,6 +23,7 @@ const StyledTabs = styled(Tabs)`
   }
 `;
 
+//This component is used to map through the recipes and display as a list as such.
 const RecipesSlide = ({ recipes }) => {
   return (
     <div style={{ display: "flex", overflow: "scroll" }}>
@@ -39,6 +38,7 @@ const RecipesSlide = ({ recipes }) => {
   );
 };
 
+//This component is dedicated to the tabs inside the homescreen. 
 const HomeTabs = () => {
   const [userPreferencesRecipes, setUserPreferencesRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

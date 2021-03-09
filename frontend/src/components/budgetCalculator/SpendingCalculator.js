@@ -1,13 +1,11 @@
 import React from "react";
 
 import {
-    Card,
-    Button,
-    Accordion,
     FormControl,
-    InputGroup,
+    InputGroup
   } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
 
+  //Dedicated to the spending input of the budget calc screen.
 const SpendingCalulator = ({ setUsersBudget, usersBudget }) => {
     return (
       <>

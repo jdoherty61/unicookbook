@@ -53,6 +53,7 @@ const recipe3 = {
   totalPrice: 5.55
   };
 
+  //HARD CODED for an example, but this app could be expanded to allow for shop sponsorships - therefore income revenue.
 export const Promotions = () => {
     return (
         <Container>

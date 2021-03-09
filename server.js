@@ -1,3 +1,6 @@
+// THE USAGE OF THIS FILE
+// This file is boiler plate to connect up express js with the connected backend and the created API calls.
+//Required imports
 const express = require('express');
 const { connect } = require('mongoose');
 const connectDB = require('./config/db');
@@ -30,7 +33,3 @@ app.use('/api/search', require('./routes/api/search'));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
-
-
-
-

@@ -3,6 +3,8 @@ import { Spinner } from "react-bootstrap"; // Using bootstrap components https:/
 // import spinner from "./spinner.gif"; //was going to use gif instead. //http://superstorefinder.net/support/knowledgebase/customizing-loading-icons/
 import colorScheme from "../../styles/mainColorPallete";
 
+//Custom spinner created for when screens are loading data from the database.
+// This can be seen in most screens and effects the overall performance as users are able to see that the screen is loading as opposed to broke
 const CustomSpinner = () => {
   return (
     <>

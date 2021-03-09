@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Button, Modal, ListGroup } from "react-bootstrap";
 import logo from "../../images/logo.png";
 
+//This is for the reviews tab in the Post view. It is currently hard coded as there is no review functionality, but it shows the capabilities of
+//this feature and potential use.
+
 const ReviewsContentTab = () => {
     //hard coded to show what the potential of a reviews section will be 
     return (

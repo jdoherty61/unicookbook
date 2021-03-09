@@ -42,6 +42,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';  //https://react-bootstrap.github
 import "./App.css"; // https://www.udemy.com/share/101WIoAEYbcV9RRnUD/ helped with this.
 
 
+// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
+// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
+// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+// Helped with understanding overall authentication.
+
+//Libraries used throughout most files
+// REACT JS - https://reactjs.org/
+// REACT BOOTSTRAP UI FRAMEWORK - https://react-bootstrap.github.io/
+// REACT-ICONS - https://react-icons.github.io/react-icons
+// FONT AWESOME - https://fontawesome.com/icons?d=gallery&p=1 
+// STYLED-COMPONENTS - https://styled-components.com/
+// -------------------------------------------------------------------------------------------------------------
+
 if (localStorage.token) {
   //There must be a token inside local storage in order to have a successful authorisation. If not, there will be an authorisation error.
   setAuthToken(localStorage.token);

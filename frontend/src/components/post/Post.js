@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, ListGroup } from "react-bootstrap";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Card, Button, ListGroup } from "react-bootstrap"; //https://react-bootstrap.github.io/
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs"; //https://www.npmjs.com/package/react-tabs
 import styled from "styled-components";
 
 import {
@@ -37,6 +37,8 @@ const StyledTabs = styled(Tabs)`
   }
 `;
 
+//Component dedicated to mapping through the ingredients array and displaying them as a list. It is a very small component and therefore I decided
+//To keep it above the parent component.
 const ListIngredients = ({ ingredients }) => {
   console.log(ingredients);
   if (ingredients.length === 0) {
@@ -49,6 +51,7 @@ const ListIngredients = ({ ingredients }) => {
   }
 };
 
+//This component is used for the title of the post. Contains the OWNER information (Name, avatar, uni)
 const CardTitle = ({ post }) => {
   return (
     <div style={{ display: "flex" }}>
@@ -85,6 +88,7 @@ const CardTitle = ({ post }) => {
   );
 };
 
+//Card content dedicated to the actual information of the post. So the difficulty, price and time.
 const CardContent = ({ post }) => {
   return (
     <Card.Body style={{ padding: "5px 15px" }}>
@@ -112,6 +116,7 @@ const CardContent = ({ post }) => {
   );
 };
 
+//Component created for the interactions (Like, save and add to shopping list). Like and save do not work within the timeframe i was unable to connect the APIs to buttons and develop the relevant logic.
 const Interactions = ({ post }) => {
   return (
     <div
@@ -132,6 +137,7 @@ const Interactions = ({ post }) => {
   );
 };
 
+// This is the content of the ingredients tab within the post. If there are no ingredients (which shouldn't really be the case, a message will show to indicate this)
 const IngredientsContentTab = ({post}) => {
 
   return (
@@ -147,6 +153,7 @@ const IngredientsContentTab = ({post}) => {
   );
 };
 
+//The PARENT component. This is the Post. Renders the above within this with logic using useEffect hook for isLoading and spinner and useState
 export const Post = ({ match }) => {
   const [post, setPost] = useState(innitialRecipeState);
   const [isLoading, setIsLoading] = useState(false);

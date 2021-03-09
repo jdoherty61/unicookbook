@@ -1,11 +1,8 @@
+//Required Imports
 import React, { useEffect, useState } from "react";
-// pulling in APIs
-import { getCurrentUserBudget } from "../../actions/userBudget";
+import { Button } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
 
-import {
-  Button
-} from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
-
+//Custom created components/imports
 import Spinner from "../layout/CustomSpinner";
 import Separator from "../layout/Separator";
 
@@ -16,6 +13,9 @@ import CalculateIncome from './CalculateIncome';
 import SpendingCalulator from './SpendingCalculator';
 import CustomBudgetCalculator from './CustomBudgetCalculator';
 
+// Utils etc. 
+// pulling in APIs
+import { getCurrentUserBudget } from "../../actions/userBudget";
 import {calculateNewBudget, saveNewCalculation} from './BudgetUtils';
 
 //based off the schema - given an innitial state when initial load, as this will hopefully prevent system error if there is a fullover.
@@ -30,11 +30,13 @@ const innitialState = {
   isCustom: false,
 };
 
+//This component is dedicated to the calculator screen. There are multiple components inside this component - the nature of react
+//The components inside this function should be able to be found in the budgetCalculator parent directory
 export const BudgetCalculator = () => {
   const [usersBudget, setUsersBudget] = useState(innitialState);
   const [isLoading, setIsLoading] = useState(false);
 
-  //MAKE A STATE FOR THE USER FORM TO FILL OUT - caught in manual testing
+  //MAKE A STATE FOR THE USER FORM TO FILL OUT - caught in manual functional testing
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,11 +45,11 @@ export const BudgetCalculator = () => {
       //set the state to the data returned, if there was
       setUsersBudget(data);
       setIsLoading(false);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
 
-  console.log(usersBudget);
+  // console.log(usersBudget);
 
   return (
     <div>
@@ -90,11 +92,11 @@ export const BudgetCalculator = () => {
               });
             }}
           >
-            {" "}
-            Calculate New Budget{" "}
+            Calculate New Budget
           </Button>
 
           <Separator />
+          
           <CustomBudgetCalculator
             usersBudget={usersBudget}
             setUsersBudget={setUsersBudget}

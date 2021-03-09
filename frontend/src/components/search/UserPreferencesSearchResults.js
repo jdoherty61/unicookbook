@@ -24,6 +24,7 @@ const Results = ({ recipes, title }) => {
   );
 };
 
+// search results based off user preferences
 export const UserPreferencesSearchResults = () => {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

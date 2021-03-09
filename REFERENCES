@@ -9,20 +9,29 @@ Packages used can be seen in both my package.json files (One within Frontend fol
  Provided me with a boiler plate structure to use in order to develop my cooking application. 
 
  //References
- https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+ MERN DEVELOPED 
 
- https://reactjs.org/ 
+ FRONT END
+   https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+   https://reactjs.org/ 
+       HOOKS USED THROUGHOUT.
+         useEffect - https://reactjs.org/docs/hooks-effect.html
+         useState - https://reactjs.org/docs/hooks-state.html 
+   https://react-bootstrap.github.io/components - Re-usable components used throughout development. Used by importing in file. 
+
+
+ BACKEND
+   https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
+   https://nodejs.org/en/   - npm - allowed for development of the package.json etc.
+
+   https://expressjs.com/ - express 
+   https://mongoosejs.com/ - used for validation 
+
+ DATABASE MANAGEMENT
+   MONGODB
+
+
     
-    HOOKS USED THROUGHOUT.
-    useEffect - https://reactjs.org/docs/hooks-effect.html
-    useState - https://reactjs.org/docs/hooks-state.html
-    
- https://react-bootstrap.github.io/components - Re-usable components used throughout development. Used by importing in file. 
-
-https://nodejs.org/en/   - npm - allowed for development of the package.json etc.
-
-https://expressjs.com/ - express 
-https://mongoosejs.com/ - used for validation 
 
 
 

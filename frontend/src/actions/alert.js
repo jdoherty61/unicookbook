@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 // Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
 // -------------------------------------------------------------------------------------------------------------
 
+//Used to set alert. Works for when a user enters the wrong password when signing in, indicating they have the wrong credentials and shouls try again
 export const setAlert = (msg, alertType, timeout = 4000) => dispatch => {
     const id = uuidv4();
     console.log(id);

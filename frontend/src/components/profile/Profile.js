@@ -34,6 +34,7 @@ const StyledTabs = styled(Tabs)`
   }
 `;
 
+//This is the users information
 const ProfileHeader = ({ user, profile }) => {
   // console.log(user);
   // console.log(profile);
@@ -79,6 +80,7 @@ const ProfileHeader = ({ user, profile }) => {
   );
 };
 
+//This is the profile component which renders the Profile Header and posts associated with the user.
 const Profile = ({
   getCurrentProfile,
   auth: { user },
@@ -115,7 +117,6 @@ const Profile = ({
           style={{
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
-            // minHeight: 455
             height: 460,
             overflow: 'scroll'
           }}
@@ -137,7 +138,6 @@ const Profile = ({
           style={{
             backgroundColor: colorScheme.lightBackground,
             marginTop: -11,
-            // minHeight: 455
             height: 460,
             overflow: 'scroll'
           }}

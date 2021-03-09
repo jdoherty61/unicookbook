@@ -10,6 +10,7 @@ import EmptyView from "../layout/EmptyView";
 //Custom actions
 import { getRecipesBasedOnTitle } from "../../actions/search";
 
+//Search Screen Results.
 const Results = ({ recipes, title }) => {
   //If there are no results (empty array), display the empty view, else render the flat list.
   if (recipes.length === 0) {
@@ -27,6 +28,7 @@ const Results = ({ recipes, title }) => {
   );
 };
 
+//Parent component - title search. So results based off the title people input.
 export const TitleSearch = ({ match }) => {
   const title = match.params.id;
   console.log(title);

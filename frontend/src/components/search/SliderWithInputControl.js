@@ -1,3 +1,5 @@
+// Wanted to provide a slider for the effort time instead of users having to constantly input numbers but was unable to get it to work
+
 // import React, { useState } from 'react';
 // import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css'; //https://react-bootstrap.netlify.app/
 // import RangeSlider from 'react-bootstrap-range-slider'; //https://react-bootstrap.netlify.app/

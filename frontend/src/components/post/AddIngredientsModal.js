@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-// https://react-bootstrap.github.io/components/modal/
-import { Button, Modal, InputGroup, FormControl } from "react-bootstrap";
+import { Button, Modal, InputGroup, FormControl } from "react-bootstrap"; // https://react-bootstrap.github.io/components/modal/
+import styled from "styled-components";
 
 import colorScheme from "../../styles/mainColorPallete";
-import styled from "styled-components";
 
 const StyledButton = styled(Button)`
   background-color: ${colorScheme.blue};
 `;
 
-//THIS WAS USED FOR THE POST FORM. THIS WAS TO ADD INDIVIDUAL INGREDIENTS
 
+//This component was used when adding a recipe. When adding ingredients to a recipe a modal will display so users can add one ingredient at a time!
+//Left a few comments incase of errors
 export const AddIngredientsModal = ({ post, setPost }) => {
   const [show, setShow] = useState(false);
   //setting it to an empty string

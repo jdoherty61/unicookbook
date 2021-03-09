@@ -10,6 +10,8 @@ import {
   InputGroup,
 } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
 
+//This is dedicated to the custom budget section of the budget screen - so users can customise a budget if they dont like the calculator option
+
 const CustomBudgetCalculator = ({ usersBudget, setUsersBudget }) => {
     const isCustom = usersBudget.isCustom === true ? usersBudget.totalBudget : "";
   

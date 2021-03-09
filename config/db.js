@@ -3,6 +3,7 @@ const config = require('config');
 //mongoURI is set in default.json and can be exported using the config.get method.
 const db = config.get('mongoURI');
 
+//BOILER PLATE FILE TO CONNECT DATABASE WITH MONGOOSE VALIDATION ETC.
 //default.json ---- is the database configuration information - the mongoURI and the secret token. 
 
 // ----------------------------------------------- REFERENCE(S) -----------------------------------------------

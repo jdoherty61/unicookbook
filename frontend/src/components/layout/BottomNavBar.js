@@ -30,6 +30,7 @@ const initialButtonState = {
   profile: false,
 };
 
+//Component is dedicated to the bottom nav bar and its icons and links associated. 
 const UserNavigationBarContent = () => {
   const [buttonState, setButtonState] = useState(initialButtonState);
 
@@ -51,9 +52,7 @@ const UserNavigationBarContent = () => {
         onClick={() => setButtonState({ ...initialButtonState, home: true })}
         to="/home"
       >
-        {/* <StyledButton onClick={() => history.push("/home")}> */}
         <AiFillHome style={{ color: homeColor }} size={25} />
-        {/* </StyledButton> */}
       </Link>
 
       <Link
@@ -62,18 +61,14 @@ const UserNavigationBarContent = () => {
         }
         to="/shoppingList"
       >
-        {/* <StyledButton onClick={() => history.push("/shoppingList")}> */}
         <FiList style={{ color: shoppingListColor }} size={25} />
-        {/* </StyledButton> */}
       </Link>
 
       <Link
         onClick={() => setButtonState({ ...initialButtonState, search: true })}
         to="/search"
       >
-        {/* <StyledButton onClick={() => history.push("/search")}> */}
         <BsSearch style={{ color: searchListColor }} size={30} />
-        {/* </StyledButton> */}
       </Link>
 
       <Link
@@ -82,18 +77,14 @@ const UserNavigationBarContent = () => {
         }
         to="/budgetCalculator"
       >
-        {/* <StyledButton onClick={() => history.push("/budgetCalculator")}> */}
         <FaPiggyBank style={{ color: calculatorColor }} size={25} />
-        {/* </StyledButton> */}
       </Link>
 
       <Link
         onClick={() => setButtonState({ ...initialButtonState, profile: true })}
         to="/myprofile"
       >
-        {/* <StyledButton onClick={() => history.push("/myprofile")}> */}
         <GiCook style={{ color: profileColor }} size={25} />
-        {/* </StyledButton> */}
       </Link>
     </>
   );

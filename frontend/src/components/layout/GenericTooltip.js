@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { Button, Overlay, Popover } from "react-bootstrap";
+import { Button, Overlay, Popover } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
+
+//This is a generic tooltip which is used to explain and guide the user for particular areas of the application which may be complicated to understand
 
 export const GenericTooltip = ({title, subtitle, explanation, chosenPadding }) => {
     const [show, setShow] = useState(false);
@@ -20,8 +22,6 @@ export const GenericTooltip = ({title, subtitle, explanation, chosenPadding }) =
           show={show}
           target={target}
           placement="left"
-          // container={ref.current}
-        //   containerPadding={chosenPadding ? chosenPadding : 20}
         >
           <Popover id="popover-contained">
             <Popover.Title as="h3">{title}</Popover.Title>

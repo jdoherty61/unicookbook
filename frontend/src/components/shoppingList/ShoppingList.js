@@ -3,8 +3,6 @@ import { Card, Button, Accordion, InputGroup, FormControl } from "react-bootstra
 
 import EmptyView from '../layout/EmptyView';
 import Spinner from "../layout/CustomSpinner";
-// import Seperator from "../layout/Separator";
-// import { BsTrash } from "react-icons/bs";
 
 import colorScheme from "../../styles/mainColorPallete";
 
@@ -20,46 +18,29 @@ import {
 const innitialShoppingListState = { list: [] };
 const innitialBudgetTotal = null;
 
+//Map and list the array of ingredients
 const ListIngredredients = ({ ingredients }) => {
   const ingreds = ingredients.map((item) => {
     return (
-      <InputGroup 
-      // className="mb-1"
-      >
+      <InputGroup>
       <InputGroup.Prepend>
         <InputGroup.Checkbox aria-label="Checkbox for following text input" />
       </InputGroup.Prepend>
       <FormControl style={{backgroundColor: 'white'}} disabled aria-label="Text input with checkbox" value={item}/>
     </InputGroup>
-      // <div
-      //   style={{
-      //     backgroundColor: "white",
-      //     margin: 1,
-      //     height: 35,
-      //     boxShadow: "0px 0px 4px 0px #C05A2E",
-      //     display: "flex",
-      //     borderRadius: 5,
-      //   }}
-      // >
-      //   <div>
-      //     {/* {item.checked} */}
-      //     {item}
-      //   </div>
-      //   {/* <div style={{ right: 20, position: "absolute" }}>£{item.price}</div> */}
-      // </div>
     );
   });
 
   return ingreds;
 };
 
+//Mapping the list returned from the DB, and splitting the list into their recipes with corresponding total and ingredients
 const ShoppingListRecipes = ({ list }) => {
   const ItemsInShoppingList = list.map((recipe) => {
     return (
       <>
       <div style={{marginBottom: 2, display: 'flex'}}>
         <h4 style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'scroll' }}>{recipe.recipeName}</h4>
-        {/* <BsTrash style={{ color: "white" }} size={20} /> */}
         </div>
         <ListIngredredients ingredients={recipe.ingredients} />
         <div style={{ textAlignLast: 'right', fontWeight: 'bold' }}>
@@ -72,6 +53,7 @@ const ShoppingListRecipes = ({ list }) => {
   return ItemsInShoppingList;
 };
 
+//Getting the budget total to be compared to the shopping list - todo is to put this in a utils file
 const getBudgetTotal = async () => {
   try {
     const { totalBudget } = await getCurrentUserBudget();
@@ -83,21 +65,22 @@ const getBudgetTotal = async () => {
   }
 };
 
+
 const getShoppingListTotalFunction = (list) => {
   let total = 0;
   list.map((recipe) => (total = total + recipe.totalPrice));
-  return total.toFixed(2);
+  return total.toFixed(2); //has to put toFixed() in place as the numbers were not working as expected
 };
 
+//The comparison which will be present in the shopping list screen at the top
 const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
-
   const totalInShoppingList = getShoppingListTotalFunction(list.list);
   console.log(totalInShoppingList);
 
   //2 decimal places! 
   const budgetTotalDp = budgetTotal?.toFixed(2);
 
-  const totalLeft = budgetTotalDp - totalInShoppingList;
+  const totalLeft = budgetTotalDp - totalInShoppingList
 
   //colours 
   const BudgetColour = colorScheme.blue; 
@@ -139,6 +122,7 @@ const OverallShoppingListAndBudgetComparison = ({budgetTotal, list}) => {
   );
 };
 
+//The bar with options such as clear and export.
 const ShoppingListOptionsMenu = ({list, setIsLoading}) => {
   return (
     <div style={{ backgroundColor: colorScheme.blue, height: 40, paddingLeft: 10, fontWeight: 'bold' }}>
@@ -166,12 +150,11 @@ const ShoppingListOptionsMenu = ({list, setIsLoading}) => {
   );
 };
 
+//The parent component that render with the above, as the shopping list screen
 export const ShoppingList = () => {
   const [list, setShoppingList] = useState(innitialShoppingListState);
   const [isLoading, setIsLoading] = useState(false);
   const [budgetTotal, setBudgetTotal] = useState(innitialBudgetTotal);
-
-  // const [shoppingListTotal, setShoppingListTotal] = useState(0);
 
   // console.log(list?.list);
 
@@ -190,7 +173,7 @@ export const ShoppingList = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-  console.log(list);
+  // console.log(list);
 
   return (
     <div style={{height: 680, overflow: 'scroll'}}>

@@ -24,6 +24,7 @@ const StyledInput = styled.input`
   border-radius: 5px;
 `;
 
+//Component separated from th actual form and then imported as there is it's own logic going on, therefore keeping organisation
 const DifficultyButtons = ({ setPost, post }) => {
   const easyColour = post.chosenDifficulty === "EASY" ? colorScheme.blue : "grey";
   const moderateColour = post.chosenDifficulty === "MODERATE" ? colorScheme.blue : "grey";
@@ -62,6 +63,7 @@ const DifficultyButtons = ({ setPost, post }) => {
   );
 };
 
+//Component separated from th actual form and then imported as there is it's own logic going on, therefore keeping organisation
 const MealCategoryButtons = ({ setPost, post }) => {
   const snackColour = post.meal === "SNACK" ? colorScheme.blue : "grey";
   const breakfastColour = post.meal === "BREAKFAST" ? colorScheme.blue : "grey";
@@ -105,6 +107,7 @@ const MealCategoryButtons = ({ setPost, post }) => {
   );
 };
 
+// The form used to create a recipe!
 const PostForm = (props) => {
   //Have to have an innitial state on mount with innitial values to target.
   const [post, setPost] = useState({

@@ -29,6 +29,7 @@ const innitialState = {
   difficulty: "null",
 };
 
+//Save the new preferences and search
 const addAndSearchForRecipes = async (userPreferences) => {
   try {
     //post the new changes
@@ -38,6 +39,7 @@ const addAndSearchForRecipes = async (userPreferences) => {
   }
 };
 
+//component dedicated to the max price input
 const MaxPriceForm = ({ userPreferences, setUserPreferences }) => {
   return (
     <>
@@ -64,6 +66,7 @@ const MaxPriceForm = ({ userPreferences, setUserPreferences }) => {
   );
 };
 
+//component dedicated to the max time input
 const MaxEffortTime = ({ userPreferences, setUserPreferences }) => {
   return (
     <>
@@ -99,6 +102,7 @@ const MaxEffortTime = ({ userPreferences, setUserPreferences }) => {
   );
 };
 
+//component dedicated to the chosen difficulty input (button). colour logic within to turn grey to blue when selected
 const ChosenDifficultyForm = ({ userPreferences, setUserPreferences }) => {
   const easyColour =
     userPreferences.difficulty === "EASY" ? colorScheme.blue : "grey";
@@ -153,6 +157,7 @@ const ChosenDifficultyForm = ({ userPreferences, setUserPreferences }) => {
   );
 };
 
+//parent component that will render the above and provide all contents on the screen.
 export const Filter = () => {
   const [userPreferences, setUserPreferences] = useState(innitialState);
   const [isLoading, setIsLoading] = useState(false);

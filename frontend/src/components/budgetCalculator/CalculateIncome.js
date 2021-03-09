@@ -4,6 +4,7 @@ import {
     InputGroup,
   } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
 
+//Component dedicated to the Income input of budget calculator. 
 const CalculateIncome = ({ setUsersBudget, usersBudget }) => {
     return (
       <>

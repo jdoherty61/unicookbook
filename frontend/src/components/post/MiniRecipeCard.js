@@ -55,6 +55,7 @@ const StyledCardPrice = styled(CardText)`
   color: ${colorScheme.orange};
 `;
 
+//This component is for the recipe cards all over the application. Used for search results, profile etc.
 export const MiniRecipeCard = ({recipe}) => {
     return (
         <Link to={`/posts/${recipe._id}`}>

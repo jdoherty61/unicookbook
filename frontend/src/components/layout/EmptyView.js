@@ -3,12 +3,9 @@ import React from "react"; //https://reactjs.org/
 import colorScheme from "../../styles/mainColorPallete";
 import logo from '../../images/logo.png';
 
-// ----------------------------------------------- REFERENCE(S) -----------------------------------------------
-// ***** TUTORIAL/COURSE THAT HELPED WITH THIS OVERALL PROCESS AND PARTICULAR FILE *****
-// Brad Traversy, 2019, MERN Stack Front To Back: Full Stack React, Redux & Node.js, https://www.udemy.com/share/101WIoAEYbcV9RRnUD/
-// Used this course for this file to connect to redux, which helped me with the authentication flow and allowed for alert messages if login was incorrect 
-// -------------------------------------------------------------------------------------------------------------
-
+//This is an empty view with the logo of the application
+//It just allows users to know that there wasnt an error but that there are no recipes!
+//Current seen in the 'Saved Recipes' tab, this will be empty due to the functionality being inactive.
 export const EmptyView = ({ type }) => {
   return (
     <div

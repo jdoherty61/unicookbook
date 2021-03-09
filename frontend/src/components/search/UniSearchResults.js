@@ -27,6 +27,7 @@ const Results = ({ recipes, title }) => {
   );
 };
 
+//Search results based off university. 
 export const UniSearchResults = () => {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

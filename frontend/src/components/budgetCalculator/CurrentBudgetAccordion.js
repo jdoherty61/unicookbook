@@ -4,9 +4,12 @@ import React from "react";
 import {
     Card,
     Accordion,
-  } from "react-bootstrap";
+  } from "react-bootstrap"; // Using bootstrap components https://react-bootstrap.github.io/
 
 import colorScheme from "../../styles/mainColorPallete";
+
+//This component is dedicated to the card like accordion that sticks to the top of the budget calculator screen - which shows the current budget
+//time scale.
 
 const CurrentBudgetAccordion = ({ usersBudget }) => {
     // const colourOfTotal = usersBudget.totalBudget > 0 ? colorScheme.successfulGreen : colorScheme.warningColour;
